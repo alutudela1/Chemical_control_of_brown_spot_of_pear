@@ -1,0 +1,209 @@
+---
+title: "Fungicide efficay In vitro"
+date: '`r paste("Actualizado en", Sys.Date())`'
+format: pdf
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, warning = FALSE, message = FALSE, 
+                      fig.height = 6, fig.width = 7)
+pacman::p_load(
+  tidyverse, 
+  medrc # EC50 estimations and comparisons
+  )
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("select", "dplyr")
+f <- function(x, y, z){
+  case_when(
+    z < pmin(x, y, na.rm = TRUE) ~ "above",
+    z > pmax(x, y, na.rm = TRUE) ~ "below",
+    between(z, pmin(x, y, na.rm = TRUE), pmax(x, y, na.rm = TRUE)) ~ "within"
+  )
+}
+```
+
+## Mycelial growth 
+
+```{r}
+raw <- rio::import("data/mycelial_growth.csv", dec=",")
+dat <- raw %>% 
+  mutate_at(vars(dose, colony_diameter), as.numeric) %>% 
+  mutate_at(vars(fungicide, strain, experiment, plate), as.factor) %>% 
+  # mutate(dose_decimal = format(dose, scientific = FALSE) %>% str_squish()) %>% 
+  # mutate(dose = as.numeric(dose_decimal)) %>% 
+  mutate(curve_id = interaction(fungicide:strain:experiment)) 
+```
+
+Data scheme
+
+```{r}
+dat %>% str
+ftable(xtabs(~ fungicide + strain + experiment + dose, dat))
+```
+
+
+```{r, eval=FALSE}
+# per fungicide / strain
+dat %>%  
+  nest(data = c(dose, colony_diameter)) %>% 
+  mutate(mod = map(data, ~broom::tidy(drm(colony_diameter~dose, fct = LL.3(), data = .))))%>%
+  unnest(c(mod))%>% 
+  tibble()
+```
+
+
+```{r, eval=FALSE}
+# per fungicide
+dat %>%  
+  nest(data = c(-fungicide)) %>% 
+  mutate(mod = map(data, ~broom::tidy(drm(colony_diameter~dose, fct = LL.3(), data = .))))%>%
+  unnest(c(mod)) %>% 
+  tibble()
+```
+
+Meta-analysis approach
+
+```{r}
+mod_mg <- metadrm(colony_diameter ~ dose, 
+               data=dat,
+               fct=LL.3(),
+               ind=curve_id,
+               cid2=fungicide,
+               struct="UN")
+summary(mod_mg)
+```
+
+Estimates 
+
+```{r}
+ec50s <- ED(mod_mg, respLev=c(50)) %>% as.data.frame()
+# coef_mod_mg <- summary(mod_mg) %>% data.frame %>% 
+#   rownames_to_column("param")  %>% 
+#   separate(param, c("param", "fungicide"))
+# ec50s <- coef_mod_mg %>% filter(param=="e") 
+# ec50s
+```
+
+
+Comparing effective dose levels for meta analysis
+
+```{r}
+ed_comp <- EDcomp(mod_mg, 
+                  percVec=c(50), 
+                  percMat=rbind(c(1,1,1,1)), 
+                  interval="fieller") %>% 
+      data.frame %>% 
+  rownames_to_column("comp") %>%
+  rowwise() %>% 
+  mutate(relative_to_one = f(Lower, Upper, 1))
+```
+
+As we compare EC50 ratios between fungicides, if the confidence interval does not contain 1, fungicides differ among them: 
+
+```{r}
+ed_comp %>% 
+  ggplot()+ 
+  aes(x=comp, y=Estimate) + 
+  geom_pointrange(aes(ymin = Lower, ymax = Upper, col=relative_to_one))+     
+  geom_hline(yintercept = 1, linetype=2)+
+  # scale_y_log10()+
+  coord_flip() + 
+  labs(col="Relative to 1")
+```
+
+> Bellis < Merpan  < Timorex < Ziram
+
+```{r}
+dat %>% 
+  ggplot()+
+  aes(x=dose+0.0001, y=colony_diameter, col=fungicide) +
+  geom_point(size=1) + 
+  geom_smooth(method = drm, 
+              method.args = list(fct = L.3()), se = F) +
+    geom_smooth(aes(group=curve_id), size=.3, linetype=2,  
+              method = drm, 
+              method.args = list(fct = L.3()), se = F) +
+  labs(title= "", x = "Dose (ppm)",  y = "Colony diameter (cm)") + 
+  scale_x_log10() 
+```
+
+## Spore germination
+
+```{r}
+germi_raw <- raw <- rio::import("data/germination.csv", dec=",")
+germi_dat <- germi_raw %>% 
+  mutate_at(vars(dose), as.numeric) %>% 
+  mutate_at(vars(fungicide, strain, experiment, plate), as.factor) %>% 
+  mutate(curve_id = interaction(fungicide:strain:experiment)) %>% 
+  mutate(dose_ = dose+0.0001)
+```
+
+Data scheme 
+
+```{r}
+germi_dat %>% str
+ftable(xtabs(complete.cases(germination_perc)~fungicide+dose, data=germi_dat))
+ftable(xtabs(complete.cases(germination_perc)~fungicide+dose+strain , data=germi_dat))
+```
+
+Meta-analysis 
+
+```{r}
+mod_germ <- metadrm(germination_perc ~ dose_, 
+               data=germi_dat,
+               fct=LL.3(),
+               ind=curve_id,
+               cid2=fungicide,
+               struct="UN")
+summary(mod_germ)
+```
+
+
+```{r}
+germ_comp <- EDcomp(mod_germ, 
+       percVec=c(50), 
+       percMat=rbind(c(1,1,1,1)), 
+       interval="fieller")  %>% 
+    data.frame %>% 
+  rownames_to_column("comp") %>%
+  rowwise() %>% 
+  mutate(relative_to_one = f(Lower, Upper, 1))
+# germ_comp
+```
+
+
+```{r}
+coef_mod_germ <- summary(mod_germ) %>% data.frame %>% 
+    rownames_to_column("param")  %>% 
+  separate(param, c("param", "fungicide"))
+
+# ec50_germ <- coef_mod_germ %>% filter(param=="e") 
+# ec50_germ
+```
+
+
+```{r}
+germ_comp %>% 
+  ggplot()+ 
+  aes(x=comp, y=Estimate) + 
+  geom_pointrange(aes(ymin = Lower, ymax = Upper, col=relative_to_one))+     
+  geom_hline(yintercept = 1, linetype=2)+
+  coord_flip() + 
+  labs(col="Relative to 1")
+```
+
+> Bellis < Ziram < Merpan  <  Timorex
+
+```{r}
+germi_dat %>% 
+  ggplot()+
+  aes(x=dose+0.0001, y=germination_perc, col=fungicide) +
+  scale_x_log10() +
+  geom_point(size=1) + 
+  geom_smooth(method = drm, 
+              method.args = list(fct = L.3()), se = F) +  
+  geom_smooth(aes(group=curve_id), size=.3, linetype=2,  
+              method = drm, 
+              method.args = list(fct = L.3()), se = F) +
+  labs(title= "", x = "Dose (ppm)",  y = "Germination (%)", col= "Fungicide")  
+```

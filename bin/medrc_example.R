@@ -1,3 +1,9 @@
+# resources:
+
+https://rpubs.com/TX-YXL/656451
+https://doseresponse.github.io/medrc/reference/metadrm.html
+https://doseresponse.github.io/drc/reference/LL.3.html
+
 ## Fitting model with lower limit equal 0
 ryegrass %>% 
   ggplot() + 
