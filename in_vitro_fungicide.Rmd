@@ -3,15 +3,17 @@ title: "Inhibition of mycelial growth of S. vesicarium in vitro"
 ---
 
 ```{r}
-pacman::p_load(tidyverse, 
-               # drc, ec50estimator, ggridges, 
-               medrc # non linear mixed models for EC50 estimations and comparisons  
-               )
+pacman::p_load(
+  tidyverse, 
+  medrc # EC50 estimations and comparisons
+  )
 conflicted::conflict_prefer("filter", "dplyr")
 conflicted::conflict_prefer("select", "dplyr")
 ```
 
-```{r error=TRUE, eval=TRUE}
+## Mycelial growth 
+
+```{r}
 raw <- rio::import("data/mycelial_growth.csv", dec=",")
 dat <- raw %>% 
   mutate_at(vars(dose, colony_diameter), as.numeric) %>% 
@@ -59,7 +61,7 @@ dat %>%
   tibble()
 ```
 
-## Meta-analysis approach
+Meta-analysis approach
 
 ```{r}
 sm1 <- metadrm(colony_diameter ~ dose, 
@@ -99,7 +101,7 @@ ed_comp %>%
 
 Bellis < Merpan  < Timorex < Ziram
 
-# Inhibition of spore germination of S. vesicarium in vitro 
+## Spore germination
 
 ```{r}
 germigraf<- read.table("germination.csv", sep = ";", header = TRUE, dec=",")
@@ -109,9 +111,10 @@ germigraf$Replicate<- as.factor(germigraf$Replicate)
 germigraf %>% str
 ftable(xtabs(complete.cases(Germination.percentage)~Treatment+ Concentration.ppm. , data=germigraf))
 ftable(xtabs(complete.cases(Germination.percentage)~Treatment+ Concentration.ppm.+ Strain , data=germigraf))
-
 ```
+
 ## Bellis
+
 ```{r}
 dat_convGB <- germigraf %>%
   filter(Treatment=="Bellis") 
@@ -123,8 +126,8 @@ mod_fungiGB <- drm(Germination.percentage ~ Concentration.ppm.,
 summary(mod_fungiGB)
 plot(mod_fungiGB)
 EDcomp(mod_fungiGB, c(50,50))
-
 ```
+
 ## Merpan
 ```{r}
 dat_convGC <- germigraf %>%
@@ -166,7 +169,9 @@ summary(mod_fungiGZ)
 plot(mod_fungiGZ)
 EDcomp(mod_fungiGZ, c(50,50))
 ```
+
 ## General Analysis 
+
 ```{r}
 mod_germigergra <- drm(Germination.percentage ~ Concentration.ppm.,   
                        curveid = Treatment, 
@@ -177,4 +182,3 @@ plot(mod_germigergra, xlab="Concentration (µg mL-1) ", ylab="Germination (%)",c
 ED(mod_germigergra, respLev = c(50), interval="delta", type = "relative")
 EDcomp(mod_germigergra, c(50,50))
 ```
-
