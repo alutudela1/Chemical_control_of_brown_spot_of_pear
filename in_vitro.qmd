@@ -5,27 +5,14 @@ format: pdf
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, warning = FALSE, message = FALSE, 
-                      fig.height = 6, fig.width = 7)
-pacman::p_load(
-  tidyverse, 
-  medrc # EC50 estimations and comparisons
-  )
-conflicted::conflict_prefer("filter", "dplyr")
-conflicted::conflict_prefer("select", "dplyr")
-f <- function(x, y, z){
-  case_when(
-    z < pmin(x, y, na.rm = TRUE) ~ "above",
-    z > pmax(x, y, na.rm = TRUE) ~ "below",
-    between(z, pmin(x, y, na.rm = TRUE), pmax(x, y, na.rm = TRUE)) ~ "within"
-  )
-}
+source(here::here("setup.R"))
 ```
 
 ## Mycelial growth 
 
 ```{r}
 raw <- rio::import("data/mycelial_growth.csv", dec=",")
+
 dat <- raw %>% 
   mutate_at(vars(dose, colony_diameter), as.numeric) %>% 
   mutate_at(vars(fungicide, strain, experiment, plate), as.factor) %>% 
