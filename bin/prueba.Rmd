@@ -359,7 +359,10 @@ EDcomp(mod_germigergra, c(50,50))
 ## Preventive treatments: Disease severity analysis (spots per fruit) 
 
 ```{r}
-sev_prev<-read.table("preventive treatments.csv", sep=";", header=TRUE, dec=",")
+sev_prev<-rio::import("data/preventive_treatments.csv", sep=";", header=TRUE, dec=",")
+
+sev_prev<-rio::import("data/bioassay.csv")
+
 sev_prev$Day<- as.factor(sev_prev$Day)
 sev_prev$Repetition<- as.factor(sev_prev$Repetition)
 sev_prev$Replicate<- as.factor(sev_prev$Replicate)
@@ -404,7 +407,9 @@ library(multcompView)
 ```
 
 ```{r}
-mod_gls3 <- gls(s.r.spots~1+Treatment+Day+Treatment:Day,weights=varComb(varIdent(form=~1|Treatment*Day)),method="REML",na.action=na.omit,data=sev_prev)
+mod_gls3 <- gls(s.r.spots ~ 1+Treatment+Day+Treatment:Day,
+                weights=varComb(varIdent(form=~1|Treatment*Day)),
+                method="REML", na.action=na.omit,data=sev_prev)
 summary(mod_gls3)
 car::Anova(mod_gls3, type="III")
 sum(residuals(mod_gls3, type="pearson")^2)

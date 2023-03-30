@@ -10,7 +10,8 @@ knitr::opts_chunk$set(echo = T, warning = FALSE, message = FALSE,
 pacman::p_load(
   tidyverse, 
   medrc,# EC50 estimations and comparisons
-  janitor
+  janitor, 
+  huxtable
 )
 conflicted::conflict_prefer("filter", "dplyr")
 conflicted::conflict_prefer("select", "dplyr")

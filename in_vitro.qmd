@@ -82,7 +82,10 @@ ed_comp <- EDcomp(mod_mg,
       data.frame %>% 
   rownames_to_column("comp") %>%
   rowwise() %>% 
-  mutate(relative_to_one = f(Lower, Upper, 1))
+  mutate(relative_to_one = f(Lower, Upper, 1)) # %>% 
+  # as_huxtable() %>% 
+  # set_number_format(1)
+
 ```
 
 As we compare EC50 ratios between fungicides, if the confidence interval does not contain 1, fungicides differ among them: 
@@ -98,7 +101,7 @@ ed_comp %>%
   labs(col="Relative to 1")
 ```
 
-> Bellis < Merpan  < Timorex < Ziram
+Bellis < Merpan  < Timorex < Ziram
 
 ```{r}
 dat %>% 
@@ -117,11 +120,11 @@ dat %>%
 ## Spore germination
 
 ```{r}
-germi_raw <- raw <- rio::import("data/germination.csv", dec=",")
+germi_raw <- rio::import("data/germination.csv", dec=",")
 germi_dat <- germi_raw %>% 
   mutate_at(vars(dose), as.numeric) %>% 
-  mutate_at(vars(fungicide, strain, experiment, plate), as.factor) %>% 
-  mutate(curve_id = interaction(fungicide:strain:experiment)) %>% 
+  mutate_at(vars(fungicide, strain, repetition, replicate), as.factor) %>% 
+  mutate(curve_id = interaction(fungicide:strain:repetition)) %>% 
   mutate(dose_ = dose+0.0001)
 ```
 
@@ -129,14 +132,14 @@ Data scheme
 
 ```{r}
 germi_dat %>% str
-ftable(xtabs(complete.cases(germination_perc)~fungicide+dose, data=germi_dat))
-ftable(xtabs(complete.cases(germination_perc)~fungicide+dose+strain , data=germi_dat))
+ftable(xtabs(complete.cases(germination_percent)~fungicide+dose, data=germi_dat))
+ftable(xtabs(complete.cases(germination_percent)~fungicide+dose+strain , data=germi_dat))
 ```
 
 Meta-analysis 
 
 ```{r}
-mod_germ <- metadrm(germination_perc ~ dose_, 
+mod_germ <- metadrm(germination_percent ~ dose_, 
                data=germi_dat,
                fct=LL.3(),
                ind=curve_id,
@@ -184,7 +187,7 @@ germ_comp %>%
 ```{r}
 germi_dat %>% 
   ggplot()+
-  aes(x=dose+0.0001, y=germination_perc, col=fungicide) +
+  aes(x=dose+0.0001, y=germination_percent, col=fungicide) +
   scale_x_log10() +
   geom_point(size=1) + 
   geom_smooth(method = drm, 
