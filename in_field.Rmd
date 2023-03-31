@@ -1,0 +1,54 @@
+---
+title: "In field assays"
+author: "Marisa A.A. Tudela"
+date: "2023-03-30"
+output: html_document
+---
+
+```{r}
+campo <- rio::import("data/Field treatments.csv", dec=",")
+head(campo)
+str(campo)
+campo$season<-as.factor(campo$season)
+```
+
+Data scheme
+
+```{r}
+campo %>% str
+ftable(xtabs(~ treatment + replicate + season, campo))
+```
+
+Model
+
+```{r}
+mod_campo_beta = betareg(prop1 ~ treatment*season, data =campo)
+car::Anova(mod_campo_beta)
+plot(mod_campo_beta)
+```
+
+Means comparison test
+
+```{r}
+betacampomedia2022 <- emmeans(mod_campo_beta, ~ treatment*season,
+                              by = "season")
+pairs(betacampomedia2022 , adjust= "Tukey", type="response")
+library(multcomp)
+cld(betacampomedia2022, alpha=0.05, Letters=letters, adjust= "Tukey")
+pwpp(betacampomedia2022)
+medias_campo = cld(betacampomedia2022, alpha=0.05, Letters=letters, adjust= "Tukey")
+medias_campo
+anidado_campo = as.tibble(medias_campo)
+pd  <- position_dodge(0.9) 
+```
+
+Graphics 
+
+```{r}
+ggplot(anidado_campo, aes(x = treatment, y = emmean, fill= treatment)) + facet_wrap(~season) + geom_col(position = "dodge")  + geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), colour = "black", width=0.1, position = pd) + geom_point(position=pd, size=3,  col = "blue")+ geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.4) + ylab("Incidence emmeans")
+g_ordc <-ggplot(anidado_campo, aes(x=reorder(treatment,-emmean), y=emmean, fill=treatment))+ facet_wrap(~season) + geom_col(position = "dodge")  + geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), colour = "black", width=0.1, position = pd) + geom_point(position=pd, size=3,  aes( col = season))+ geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.4) + ylab("Proportion of affected leaves") + xlab("Treatment")
+g_ordc2 <- g_ordc + scale_fill_grey()  
+g_ordc2
+
+```
+

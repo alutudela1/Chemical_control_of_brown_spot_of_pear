@@ -1,0 +1,601 @@
+treatment;repetition;day;replicate;fruit;spots_per_fruit;treatment/day;s.r.spots;treatment.day
+Bellis;1;1;1;1;1;Bellis1;1;Bellis1
+Bellis;1;1;1;2;0;Bellis1;0;Bellis1
+Bellis;1;1;1;3;0;Bellis1;0;Bellis1
+Bellis;1;1;1;4;0;Bellis1;0;Bellis1
+Bellis;1;1;1;5;0;Bellis1;0;Bellis1
+Bellis;1;1;2;1;0;Bellis1;0;Bellis1
+Bellis;1;1;2;2;0;Bellis1;0;Bellis1
+Bellis;1;1;2;3;0;Bellis1;0;Bellis1
+Bellis;1;1;2;4;0;Bellis1;0;Bellis1
+Bellis;1;1;2;5;0;Bellis1;0;Bellis1
+Bellis;1;1;3;1;0;Bellis1;0;Bellis1
+Bellis;1;1;3;2;0;Bellis1;0;Bellis1
+Bellis;1;1;3;3;0;Bellis1;0;Bellis1
+Bellis;1;1;3;4;1;Bellis1;1;Bellis1
+Bellis;1;1;3;5;0;Bellis1;0;Bellis1
+Bellis;1;1;4;1;0;Bellis1;0;Bellis1
+Bellis;1;1;4;2;0;Bellis1;0;Bellis1
+Bellis;1;1;4;3;0;Bellis1;0;Bellis1
+Bellis;1;1;4;4;0;Bellis1;0;Bellis1
+Bellis;1;1;4;5;0;Bellis1;0;Bellis1
+Bellis;1;7;1;1;5;Bellis7;2,236067977;Bellis7
+Bellis;1;7;1;2;10;Bellis7;3,16227766;Bellis7
+Bellis;1;7;1;3;12;Bellis7;3,464101615;Bellis7
+Bellis;1;7;1;4;8;Bellis7;2,828427125;Bellis7
+Bellis;1;7;1;5;1;Bellis7;1;Bellis7
+Bellis;1;7;2;1;0;Bellis7;0;Bellis7
+Bellis;1;7;2;2;0;Bellis7;0;Bellis7
+Bellis;1;7;2;3;6;Bellis7;2,449489743;Bellis7
+Bellis;1;7;2;4;4;Bellis7;2;Bellis7
+Bellis;1;7;2;5;2;Bellis7;1,414213562;Bellis7
+Bellis;1;7;3;1;6;Bellis7;2,449489743;Bellis7
+Bellis;1;7;3;2;2;Bellis7;1,414213562;Bellis7
+Bellis;1;7;3;3;0;Bellis7;0;Bellis7
+Bellis;1;7;3;4;1;Bellis7;1;Bellis7
+Bellis;1;7;3;5;6;Bellis7;2,449489743;Bellis7
+Bellis;1;7;4;1;1;Bellis7;1;Bellis7
+Bellis;1;7;4;2;0;Bellis7;0;Bellis7
+Bellis;1;7;4;3;10;Bellis7;3,16227766;Bellis7
+Bellis;1;7;4;4;4;Bellis7;2;Bellis7
+Bellis;1;7;4;5;0;Bellis7;0;Bellis7
+Bellis;1;15;1;1;2;Bellis15;1,414213562;Bellis15
+Bellis;1;15;1;2;8;Bellis15;2,828427125;Bellis15
+Bellis;1;15;1;3;1;Bellis15;1;Bellis15
+Bellis;1;15;1;4;3;Bellis15;1,732050808;Bellis15
+Bellis;1;15;1;5;0;Bellis15;0;Bellis15
+Bellis;1;15;2;1;1;Bellis15;1;Bellis15
+Bellis;1;15;2;2;3;Bellis15;1,732050808;Bellis15
+Bellis;1;15;2;3;5;Bellis15;2,236067977;Bellis15
+Bellis;1;15;2;4;6;Bellis15;2,449489743;Bellis15
+Bellis;1;15;2;5;5;Bellis15;2,236067977;Bellis15
+Bellis;1;15;3;1;7;Bellis15;2,645751311;Bellis15
+Bellis;1;15;3;2;7;Bellis15;2,645751311;Bellis15
+Bellis;1;15;3;3;2;Bellis15;1,414213562;Bellis15
+Bellis;1;15;3;4;10;Bellis15;3,16227766;Bellis15
+Bellis;1;15;3;5;0;Bellis15;0;Bellis15
+Bellis;1;15;4;1;0;Bellis15;0;Bellis15
+Bellis;1;15;4;2;6;Bellis15;2,449489743;Bellis15
+Bellis;1;15;4;3;3;Bellis15;1,732050808;Bellis15
+Bellis;1;15;4;4;0;Bellis15;0;Bellis15
+Bellis;1;15;4;5;14;Bellis15;3,741657387;Bellis15
+Captan;1;1;1;1;0;Captan1;0;Captan1
+Captan;1;1;1;2;1;Captan1;1;Captan1
+Captan;1;1;1;3;0;Captan1;0;Captan1
+Captan;1;1;1;4;0;Captan1;0;Captan1
+Captan;1;1;1;5;0;Captan1;0;Captan1
+Captan;1;1;2;1;0;Captan1;0;Captan1
+Captan;1;1;2;2;0;Captan1;0;Captan1
+Captan;1;1;2;3;1;Captan1;1;Captan1
+Captan;1;1;2;4;0;Captan1;0;Captan1
+Captan;1;1;2;5;2;Captan1;1,414213562;Captan1
+Captan;1;1;3;1;0;Captan1;0;Captan1
+Captan;1;1;3;2;0;Captan1;0;Captan1
+Captan;1;1;3;3;0;Captan1;0;Captan1
+Captan;1;1;3;4;0;Captan1;0;Captan1
+Captan;1;1;3;5;1;Captan1;1;Captan1
+Captan;1;1;4;1;1;Captan1;1;Captan1
+Captan;1;1;4;2;1;Captan1;1;Captan1
+Captan;1;1;4;3;1;Captan1;1;Captan1
+Captan;1;1;4;4;1;Captan1;1;Captan1
+Captan;1;1;4;5;1;Captan1;1;Captan1
+Captan;1;7;1;1;0;Captan7;0;Captan7
+Captan;1;7;1;2;0;Captan7;0;Captan7
+Captan;1;7;1;3;0;Captan7;0;Captan7
+Captan;1;7;1;4;4;Captan7;2;Captan7
+Captan;1;7;1;5;1;Captan7;1;Captan7
+Captan;1;7;2;1;1;Captan7;1;Captan7
+Captan;1;7;2;2;0;Captan7;0;Captan7
+Captan;1;7;2;3;0;Captan7;0;Captan7
+Captan;1;7;2;4;0;Captan7;0;Captan7
+Captan;1;7;2;5;1;Captan7;1;Captan7
+Captan;1;7;3;1;2;Captan7;1,414213562;Captan7
+Captan;1;7;3;2;3;Captan7;1,732050808;Captan7
+Captan;1;7;3;3;1;Captan7;1;Captan7
+Captan;1;7;3;4;7;Captan7;2,645751311;Captan7
+Captan;1;7;3;5;2;Captan7;1,414213562;Captan7
+Captan;1;7;4;1;7;Captan7;2,645751311;Captan7
+Captan;1;7;4;2;6;Captan7;2,449489743;Captan7
+Captan;1;7;4;3;6;Captan7;2,449489743;Captan7
+Captan;1;7;4;4;3;Captan7;1,732050808;Captan7
+Captan;1;7;4;5;0;Captan7;0;Captan7
+Captan;1;15;1;1;10;Captan15;3,16227766;Captan15
+Captan;1;15;1;2;35;Captan15;5,916079783;Captan15
+Captan;1;15;1;3;4;Captan15;2;Captan15
+Captan;1;15;1;4;4;Captan15;2;Captan15
+Captan;1;15;1;5;8;Captan15;2,828427125;Captan15
+Captan;1;15;2;1;0;Captan15;0;Captan15
+Captan;1;15;2;2;11;Captan15;3,31662479;Captan15
+Captan;1;15;2;3;3;Captan15;1,732050808;Captan15
+Captan;1;15;2;4;20;Captan15;4,472135955;Captan15
+Captan;1;15;2;5;15;Captan15;3,872983346;Captan15
+Captan;1;15;3;1;5;Captan15;2,236067977;Captan15
+Captan;1;15;3;2;8;Captan15;2,828427125;Captan15
+Captan;1;15;3;3;0;Captan15;0;Captan15
+Captan;1;15;3;4;0;Captan15;0;Captan15
+Captan;1;15;3;5;14;Captan15;3,741657387;Captan15
+Captan;1;15;4;1;10;Captan15;3,16227766;Captan15
+Captan;1;15;4;2;17;Captan15;4,123105626;Captan15
+Captan;1;15;4;3;7;Captan15;2,645751311;Captan15
+Captan;1;15;4;4;0;Captan15;0;Captan15
+Captan;1;15;4;5;19;Captan15;4,358898944;Captan15
+Timorex;1;1;1;1;24;Timorex1;4,898979486;Timorex1
+Timorex;1;1;1;2;37;Timorex1;6,08276253;Timorex1
+Timorex;1;1;1;3;20;Timorex1;4,472135955;Timorex1
+Timorex;1;1;1;4;23;Timorex1;4,795831523;Timorex1
+Timorex;1;1;1;5;13;Timorex1;3,605551275;Timorex1
+Timorex;1;1;2;1;46;Timorex1;6,782329983;Timorex1
+Timorex;1;1;2;2;30;Timorex1;5,477225575;Timorex1
+Timorex;1;1;2;3;19;Timorex1;4,358898944;Timorex1
+Timorex;1;1;2;4;8;Timorex1;2,828427125;Timorex1
+Timorex;1;1;2;5;15;Timorex1;3,872983346;Timorex1
+Timorex;1;1;3;1;8;Timorex1;2,828427125;Timorex1
+Timorex;1;1;3;2;14;Timorex1;3,741657387;Timorex1
+Timorex;1;1;3;3;24;Timorex1;4,898979486;Timorex1
+Timorex;1;1;3;4;20;Timorex1;4,472135955;Timorex1
+Timorex;1;1;3;5;15;Timorex1;3,872983346;Timorex1
+Timorex;1;1;4;1;14;Timorex1;3,741657387;Timorex1
+Timorex;1;1;4;2;16;Timorex1;4;Timorex1
+Timorex;1;1;4;3;18;Timorex1;4,242640687;Timorex1
+Timorex;1;1;4;4;17;Timorex1;4,123105626;Timorex1
+Timorex;1;1;4;5;10;Timorex1;3,16227766;Timorex1
+Timorex;1;7;1;1;67;Timorex7;8,185352772;Timorex7
+Timorex;1;7;1;2;75;Timorex7;8,660254038;Timorex7
+Timorex;1;7;1;3;38;Timorex7;6,164414003;Timorex7
+Timorex;1;7;1;4;41;Timorex7;6,403124237;Timorex7
+Timorex;1;7;1;5;62;Timorex7;7,874007874;Timorex7
+Timorex;1;7;2;1;58;Timorex7;7,615773106;Timorex7
+Timorex;1;7;2;2;39;Timorex7;6,244997998;Timorex7
+Timorex;1;7;2;3;66;Timorex7;8,124038405;Timorex7
+Timorex;1;7;2;4;53;Timorex7;7,280109889;Timorex7
+Timorex;1;7;2;5;64;Timorex7;8;Timorex7
+Timorex;1;7;3;1;36;Timorex7;6;Timorex7
+Timorex;1;7;3;2;54;Timorex7;7,348469228;Timorex7
+Timorex;1;7;3;3;34;Timorex7;5,830951895;Timorex7
+Timorex;1;7;3;4;35;Timorex7;5,916079783;Timorex7
+Timorex;1;7;3;5;55;Timorex7;7,416198487;Timorex7
+Timorex;1;7;4;1;42;Timorex7;6,480740698;Timorex7
+Timorex;1;7;4;2;70;Timorex7;8,366600265;Timorex7
+Timorex;1;7;4;3;32;Timorex7;5,656854249;Timorex7
+Timorex;1;7;4;4;72;Timorex7;8,485281374;Timorex7
+Timorex;1;7;4;5;56;Timorex7;7,483314774;Timorex7
+Timorex;1;15;1;1;90;Timorex15;9,486832981;Timorex15
+Timorex;1;15;1;2;78;Timorex15;8,831760866;Timorex15
+Timorex;1;15;1;3;69;Timorex15;8,306623863;Timorex15
+Timorex;1;15;1;4;56;Timorex15;7,483314774;Timorex15
+Timorex;1;15;1;5;29;Timorex15;5,385164807;Timorex15
+Timorex;1;15;2;1;35;Timorex15;5,916079783;Timorex15
+Timorex;1;15;2;2;60;Timorex15;7,745966692;Timorex15
+Timorex;1;15;2;3;34;Timorex15;5,830951895;Timorex15
+Timorex;1;15;2;4;62;Timorex15;7,874007874;Timorex15
+Timorex;1;15;2;5;51;Timorex15;7,141428429;Timorex15
+Timorex;1;15;3;1;49;Timorex15;7;Timorex15
+Timorex;1;15;3;2;36;Timorex15;6;Timorex15
+Timorex;1;15;3;3;53;Timorex15;7,280109889;Timorex15
+Timorex;1;15;3;4;79;Timorex15;8,888194417;Timorex15
+Timorex;1;15;3;5;52;Timorex15;7,211102551;Timorex15
+Timorex;1;15;4;1;64;Timorex15;8;Timorex15
+Timorex;1;15;4;2;71;Timorex15;8,426149773;Timorex15
+Timorex;1;15;4;3;83;Timorex15;9,110433579;Timorex15
+Timorex;1;15;4;4;76;Timorex15;8,717797887;Timorex15
+Timorex;1;15;4;5;67;Timorex15;8,185352772;Timorex15
+Ziram;1;1;1;1;1;Ziram1;1;Ziram1
+Ziram;1;1;1;2;1;Ziram1;1;Ziram1
+Ziram;1;1;1;3;0;Ziram1;0;Ziram1
+Ziram;1;1;1;4;0;Ziram1;0;Ziram1
+Ziram;1;1;1;5;0;Ziram1;0;Ziram1
+Ziram;1;1;2;1;1;Ziram1;1;Ziram1
+Ziram;1;1;2;2;3;Ziram1;1,732050808;Ziram1
+Ziram;1;1;2;3;0;Ziram1;0;Ziram1
+Ziram;1;1;2;4;1;Ziram1;1;Ziram1
+Ziram;1;1;2;5;0;Ziram1;0;Ziram1
+Ziram;1;1;3;1;0;Ziram1;0;Ziram1
+Ziram;1;1;3;2;2;Ziram1;1,414213562;Ziram1
+Ziram;1;1;3;3;2;Ziram1;1,414213562;Ziram1
+Ziram;1;1;3;4;5;Ziram1;2,236067977;Ziram1
+Ziram;1;1;3;5;2;Ziram1;1,414213562;Ziram1
+Ziram;1;1;4;1;1;Ziram1;1;Ziram1
+Ziram;1;1;4;2;0;Ziram1;0;Ziram1
+Ziram;1;1;4;3;4;Ziram1;2;Ziram1
+Ziram;1;1;4;4;0;Ziram1;0;Ziram1
+Ziram;1;1;4;5;1;Ziram1;1;Ziram1
+Ziram;1;7;1;1;7;Ziram7;2,645751311;Ziram7
+Ziram;1;7;1;2;0;Ziram7;0;Ziram7
+Ziram;1;7;1;3;0;Ziram7;0;Ziram7
+Ziram;1;7;1;4;0;Ziram7;0;Ziram7
+Ziram;1;7;1;5;2;Ziram7;1,414213562;Ziram7
+Ziram;1;7;2;1;8;Ziram7;2,828427125;Ziram7
+Ziram;1;7;2;2;2;Ziram7;1,414213562;Ziram7
+Ziram;1;7;2;3;1;Ziram7;1;Ziram7
+Ziram;1;7;2;4;0;Ziram7;0;Ziram7
+Ziram;1;7;2;5;0;Ziram7;0;Ziram7
+Ziram;1;7;3;1;0;Ziram7;0;Ziram7
+Ziram;1;7;3;2;2;Ziram7;1,414213562;Ziram7
+Ziram;1;7;3;3;1;Ziram7;1;Ziram7
+Ziram;1;7;3;4;1;Ziram7;1;Ziram7
+Ziram;1;7;3;5;2;Ziram7;1,414213562;Ziram7
+Ziram;1;7;4;1;0;Ziram7;0;Ziram7
+Ziram;1;7;4;2;0;Ziram7;0;Ziram7
+Ziram;1;7;4;3;1;Ziram7;1;Ziram7
+Ziram;1;7;4;4;0;Ziram7;0;Ziram7
+Ziram;1;7;4;5;5;Ziram7;2,236067977;Ziram7
+Ziram;1;15;1;1;13;Ziram15;3,605551275;Ziram15
+Ziram;1;15;1;2;11;Ziram15;3,31662479;Ziram15
+Ziram;1;15;1;3;3;Ziram15;1,732050808;Ziram15
+Ziram;1;15;1;4;9;Ziram15;3;Ziram15
+Ziram;1;15;1;5;9;Ziram15;3;Ziram15
+Ziram;1;15;2;1;23;Ziram15;4,795831523;Ziram15
+Ziram;1;15;2;2;2;Ziram15;1,414213562;Ziram15
+Ziram;1;15;2;3;13;Ziram15;3,605551275;Ziram15
+Ziram;1;15;2;4;8;Ziram15;2,828427125;Ziram15
+Ziram;1;15;2;5;4;Ziram15;2;Ziram15
+Ziram;1;15;3;1;2;Ziram15;1,414213562;Ziram15
+Ziram;1;15;3;2;3;Ziram15;1,732050808;Ziram15
+Ziram;1;15;3;3;3;Ziram15;1,732050808;Ziram15
+Ziram;1;15;3;4;1;Ziram15;1;Ziram15
+Ziram;1;15;3;5;4;Ziram15;2;Ziram15
+Ziram;1;15;4;1;3;Ziram15;1,732050808;Ziram15
+Ziram;1;15;4;2;12;Ziram15;3,464101615;Ziram15
+Ziram;1;15;4;3;4;Ziram15;2;Ziram15
+Ziram;1;15;4;4;6;Ziram15;2,449489743;Ziram15
+Ziram;1;15;4;5;3;Ziram15;1,732050808;Ziram15
+control ;1;1;1;1;97;Control;9,848857802;Control1
+control ;1;1;1;2;58;Control;7,615773106;Control1
+control ;1;1;1;3;70;Control;8,366600265;Control1
+control ;1;1;1;4;63;Control;7,937253933;Control1
+control ;1;1;1;5;87;Control;9,327379053;Control1
+control ;1;1;2;1;70;Control;8,366600265;Control1
+control ;1;1;2;2;92;Control;9,591663047;Control1
+control ;1;1;2;3;65;Control;8,062257748;Control1
+control ;1;1;2;4;81;Control;9;Control1
+control ;1;1;2;5;64;Control;8;Control1
+control ;1;1;3;1;62;Control;7,874007874;Control1
+control ;1;1;3;2;89;Control;9,433981132;Control1
+control ;1;1;3;3;50;Control;7,071067812;Control1
+control ;1;1;3;4;61;Control;7,810249676;Control1
+control ;1;1;3;5;76;Control;8,717797887;Control1
+control ;1;1;4;1;78;Control;8,831760866;Control1
+control ;1;1;4;2;74;Control;8,602325267;Control1
+control ;1;1;4;3;53;Control;7,280109889;Control1
+control ;1;1;4;4;75;Control;8,660254038;Control1
+control ;1;1;4;5;83;Control;9,110433579;Control1
+control ;1;7;1;1;93;Control;9,643650761;Control7
+control ;1;7;1;2;80;Control;8,94427191;Control7
+control ;1;7;1;3;100;Control;10;Control7
+control ;1;7;1;4;75;Control;8,660254038;Control7
+control ;1;7;1;5;90;Control;9,486832981;Control7
+control ;1;7;2;1;104;Control;10,19803903;Control7
+control ;1;7;2;2;121;Control;11;Control7
+control ;1;7;2;3;85;Control;9,219544457;Control7
+control ;1;7;2;4;80;Control;8,94427191;Control7
+control ;1;7;2;5;79;Control;8,888194417;Control7
+control ;1;7;3;1;62;Control;7,874007874;Control7
+control ;1;7;3;2;66;Control;8,124038405;Control7
+control ;1;7;3;3;63;Control;7,937253933;Control7
+control ;1;7;3;4;59;Control;7,681145748;Control7
+control ;1;7;3;5;76;Control;8,717797887;Control7
+control ;1;7;4;1;36;Control;6;Control7
+control ;1;7;4;2;64;Control;8;Control7
+control ;1;7;4;3;62;Control;7,874007874;Control7
+control ;1;7;4;4;74;Control;8,602325267;Control7
+control ;1;7;4;5;56;Control;7,483314774;Control7
+control ;1;15;1;1;96;Control;9,797958971;Control15
+control ;1;15;1;2;88;Control;9,38083152;Control15
+control ;1;15;1;3;75;Control;8,660254038;Control15
+control ;1;15;1;4;71;Control;8,426149773;Control15
+control ;1;15;1;5;87;Control;9,327379053;Control15
+control ;1;15;2;1;74;Control;8,602325267;Control15
+control ;1;15;2;2;124;Control;11,13552873;Control15
+control ;1;15;2;3;80;Control;8,94427191;Control15
+control ;1;15;2;4;90;Control;9,486832981;Control15
+control ;1;15;2;5;76;Control;8,717797887;Control15
+control ;1;15;3;1;69;Control;8,306623863;Control15
+control ;1;15;3;2;88;Control;9,38083152;Control15
+control ;1;15;3;3;91;Control;9,539392014;Control15
+control ;1;15;3;4;66;Control;8,124038405;Control15
+control ;1;15;3;5;34;Control;5,830951895;Control15
+control ;1;15;4;1;56;Control;7,483314774;Control15
+control ;1;15;4;2;95;Control;9,746794345;Control15
+control ;1;15;4;3;109;Control;10,44030651;Control15
+control ;1;15;4;4;77;Control;8,774964387;Control15
+control ;1;15;4;5;67;Control;8,185352772;Control15
+Bellis;2;1;1;1;0;Bellis1;0;Bellis1
+Bellis;2;1;1;2;0;Bellis1;0;Bellis1
+Bellis;2;1;1;3;0;Bellis1;0;Bellis1
+Bellis;2;1;1;4;1;Bellis1;1;Bellis1
+Bellis;2;1;1;5;0;Bellis1;0;Bellis1
+Bellis;2;1;2;1;1;Bellis1;1;Bellis1
+Bellis;2;1;2;2;0;Bellis1;0;Bellis1
+Bellis;2;1;2;3;0;Bellis1;0;Bellis1
+Bellis;2;1;2;4;0;Bellis1;0;Bellis1
+Bellis;2;1;2;5;0;Bellis1;0;Bellis1
+Bellis;2;1;3;1;0;Bellis1;0;Bellis1
+Bellis;2;1;3;2;0;Bellis1;0;Bellis1
+Bellis;2;1;3;3;0;Bellis1;0;Bellis1
+Bellis;2;1;3;4;0;Bellis1;0;Bellis1
+Bellis;2;1;3;5;0;Bellis1;0;Bellis1
+Bellis;2;1;4;1;1;Bellis1;1;Bellis1
+Bellis;2;1;4;2;0;Bellis1;0;Bellis1
+Bellis;2;1;4;3;0;Bellis1;0;Bellis1
+Bellis;2;1;4;4;0;Bellis1;0;Bellis1
+Bellis;2;1;4;5;0;Bellis1;0;Bellis1
+Bellis;2;7;1;1;4;Bellis7;2;Bellis7
+Bellis;2;7;1;2;0;Bellis7;0;Bellis7
+Bellis;2;7;1;3;5;Bellis7;2,236067977;Bellis7
+Bellis;2;7;1;4;2;Bellis7;1,414213562;Bellis7
+Bellis;2;7;1;5;0;Bellis7;0;Bellis7
+Bellis;2;7;2;1;0;Bellis7;0;Bellis7
+Bellis;2;7;2;2;1;Bellis7;1;Bellis7
+Bellis;2;7;2;3;3;Bellis7;1,732050808;Bellis7
+Bellis;2;7;2;4;3;Bellis7;1,732050808;Bellis7
+Bellis;2;7;2;5;1;Bellis7;1;Bellis7
+Bellis;2;7;3;1;2;Bellis7;1,414213562;Bellis7
+Bellis;2;7;3;2;0;Bellis7;0;Bellis7
+Bellis;2;7;3;3;0;Bellis7;0;Bellis7
+Bellis;2;7;3;4;1;Bellis7;1;Bellis7
+Bellis;2;7;3;5;0;Bellis7;0;Bellis7
+Bellis;2;7;4;1;3;Bellis7;1,732050808;Bellis7
+Bellis;2;7;4;2;0;Bellis7;0;Bellis7
+Bellis;2;7;4;3;5;Bellis7;2,236067977;Bellis7
+Bellis;2;7;4;4;2;Bellis7;1,414213562;Bellis7
+Bellis;2;7;4;5;0;Bellis7;0;Bellis7
+Bellis;2;15;1;1;3;Bellis15;1,732050808;Bellis15
+Bellis;2;15;1;2;7;Bellis15;2,645751311;Bellis15
+Bellis;2;15;1;3;0;Bellis15;0;Bellis15
+Bellis;2;15;1;4;6;Bellis15;2,449489743;Bellis15
+Bellis;2;15;1;5;0;Bellis15;0;Bellis15
+Bellis;2;15;2;1;1;Bellis15;1;Bellis15
+Bellis;2;15;2;2;5;Bellis15;2,236067977;Bellis15
+Bellis;2;15;2;3;4;Bellis15;2;Bellis15
+Bellis;2;15;2;4;7;Bellis15;2,645751311;Bellis15
+Bellis;2;15;2;5;5;Bellis15;2,236067977;Bellis15
+Bellis;2;15;3;1;6;Bellis15;2,449489743;Bellis15
+Bellis;2;15;3;2;5;Bellis15;2,236067977;Bellis15
+Bellis;2;15;3;3;3;Bellis15;1,732050808;Bellis15
+Bellis;2;15;3;4;9;Bellis15;3;Bellis15
+Bellis;2;15;3;5;2;Bellis15;1,414213562;Bellis15
+Bellis;2;15;4;1;2;Bellis15;1,414213562;Bellis15
+Bellis;2;15;4;2;5;Bellis15;2,236067977;Bellis15
+Bellis;2;15;4;3;4;Bellis15;2;Bellis15
+Bellis;2;15;4;4;0;Bellis15;0;Bellis15
+Bellis;2;15;4;5;12;Bellis15;3,464101615;Bellis15
+Captan;2;1;1;1;0;Captan1;0;Captan1
+Captan;2;1;1;2;0;Captan1;0;Captan1
+Captan;2;1;1;3;0;Captan1;0;Captan1
+Captan;2;1;1;4;0;Captan1;0;Captan1
+Captan;2;1;1;5;1;Captan1;1;Captan1
+Captan;2;1;2;1;0;Captan1;0;Captan1
+Captan;2;1;2;2;0;Captan1;0;Captan1
+Captan;2;1;2;3;0;Captan1;0;Captan1
+Captan;2;1;2;4;1;Captan1;1;Captan1
+Captan;2;1;2;5;1;Captan1;1;Captan1
+Captan;2;1;3;1;0;Captan1;0;Captan1
+Captan;2;1;3;2;0;Captan1;0;Captan1
+Captan;2;1;3;3;1;Captan1;1;Captan1
+Captan;2;1;3;4;0;Captan1;0;Captan1
+Captan;2;1;3;5;1;Captan1;1;Captan1
+Captan;2;1;4;1;1;Captan1;1;Captan1
+Captan;2;1;4;2;0;Captan1;0;Captan1
+Captan;2;1;4;3;1;Captan1;1;Captan1
+Captan;2;1;4;4;1;Captan1;1;Captan1
+Captan;2;1;4;5;2;Captan1;1,414213562;Captan1
+Captan;2;7;1;1;0;Captan7;0;Captan7
+Captan;2;7;1;2;0;Captan7;0;Captan7
+Captan;2;7;1;3;3;Captan7;1,732050808;Captan7
+Captan;2;7;1;4;2;Captan7;1,414213562;Captan7
+Captan;2;7;1;5;2;Captan7;1,414213562;Captan7
+Captan;2;7;2;1;1;Captan7;1;Captan7
+Captan;2;7;2;2;0;Captan7;0;Captan7
+Captan;2;7;2;3;2;Captan7;1,414213562;Captan7
+Captan;2;7;2;4;0;Captan7;0;Captan7
+Captan;2;7;2;5;1;Captan7;1;Captan7
+Captan;2;7;3;1;2;Captan7;1,414213562;Captan7
+Captan;2;7;3;2;4;Captan7;2;Captan7
+Captan;2;7;3;3;2;Captan7;1,414213562;Captan7
+Captan;2;7;3;4;6;Captan7;2,449489743;Captan7
+Captan;2;7;3;5;2;Captan7;1,414213562;Captan7
+Captan;2;7;4;1;7;Captan7;2,645751311;Captan7
+Captan;2;7;4;2;5;Captan7;2,236067977;Captan7
+Captan;2;7;4;3;5;Captan7;2,236067977;Captan7
+Captan;2;7;4;4;3;Captan7;1,732050808;Captan7
+Captan;2;7;4;5;0;Captan7;0;Captan7
+Captan;2;15;1;1;9;Captan15;3;Captan15
+Captan;2;15;1;2;30;Captan15;5,477225575;Captan15
+Captan;2;15;1;3;15;Captan15;3,872983346;Captan15
+Captan;2;15;1;4;14;Captan15;3,741657387;Captan15
+Captan;2;15;1;5;4;Captan15;2;Captan15
+Captan;2;15;2;1;2;Captan15;1,414213562;Captan15
+Captan;2;15;2;2;0;Captan15;0;Captan15
+Captan;2;15;2;3;14;Captan15;3,741657387;Captan15
+Captan;2;15;2;4;5;Captan15;2,236067977;Captan15
+Captan;2;15;2;5;20;Captan15;4,472135955;Captan15
+Captan;2;15;3;1;7;Captan15;2,645751311;Captan15
+Captan;2;15;3;2;6;Captan15;2,449489743;Captan15
+Captan;2;15;3;3;14;Captan15;3,741657387;Captan15
+Captan;2;15;3;4;0;Captan15;0;Captan15
+Captan;2;15;3;5;10;Captan15;3,16227766;Captan15
+Captan;2;15;4;1;0;Captan15;0;Captan15
+Captan;2;15;4;2;10;Captan15;3,16227766;Captan15
+Captan;2;15;4;3;8;Captan15;2,828427125;Captan15
+Captan;2;15;4;4;13;Captan15;3,605551275;Captan15
+Captan;2;15;4;5;0;Captan15;0;Captan15
+Timorex;2;1;1;1;37;Timorex1;6,08276253;Timorex1
+Timorex;2;1;1;2;25;Timorex1;5;Timorex1
+Timorex;2;1;1;3;23;Timorex1;4,795831523;Timorex1
+Timorex;2;1;1;4;20;Timorex1;4,472135955;Timorex1
+Timorex;2;1;1;5;45;Timorex1;6,708203932;Timorex1
+Timorex;2;1;2;1;14;Timorex1;3,741657387;Timorex1
+Timorex;2;1;2;2;18;Timorex1;4,242640687;Timorex1
+Timorex;2;1;2;3;31;Timorex1;5,567764363;Timorex1
+Timorex;2;1;2;4;16;Timorex1;4;Timorex1
+Timorex;2;1;2;5;7;Timorex1;2,645751311;Timorex1
+Timorex;2;1;3;1;8;Timorex1;2,828427125;Timorex1
+Timorex;2;1;3;2;12;Timorex1;3,464101615;Timorex1
+Timorex;2;1;3;3;26;Timorex1;5,099019514;Timorex1
+Timorex;2;1;3;4;16;Timorex1;4;Timorex1
+Timorex;2;1;3;5;19;Timorex1;4,358898944;Timorex1
+Timorex;2;1;4;1;14;Timorex1;3,741657387;Timorex1
+Timorex;2;1;4;2;18;Timorex1;4,242640687;Timorex1
+Timorex;2;1;4;3;15;Timorex1;3,872983346;Timorex1
+Timorex;2;1;4;4;16;Timorex1;4;Timorex1
+Timorex;2;1;4;5;9;Timorex1;3;Timorex1
+Timorex;2;7;1;1;72;Timorex7;8,485281374;Timorex7
+Timorex;2;7;1;2;67;Timorex7;8,185352772;Timorex7
+Timorex;2;7;1;3;36;Timorex7;6;Timorex7
+Timorex;2;7;1;4;48;Timorex7;6,92820323;Timorex7
+Timorex;2;7;1;5;67;Timorex7;8,185352772;Timorex7
+Timorex;2;7;2;1;52;Timorex7;7,211102551;Timorex7
+Timorex;2;7;2;2;36;Timorex7;6;Timorex7
+Timorex;2;7;2;3;70;Timorex7;8,366600265;Timorex7
+Timorex;2;7;2;4;63;Timorex7;7,937253933;Timorex7
+Timorex;2;7;2;5;67;Timorex7;8,185352772;Timorex7
+Timorex;2;7;3;1;54;Timorex7;7,348469228;Timorex7
+Timorex;2;7;3;2;37;Timorex7;6,08276253;Timorex7
+Timorex;2;7;3;3;33;Timorex7;5,744562647;Timorex7
+Timorex;2;7;3;4;55;Timorex7;7,416198487;Timorex7
+Timorex;2;7;3;5;39;Timorex7;6,244997998;Timorex7
+Timorex;2;7;4;1;38;Timorex7;6,164414003;Timorex7
+Timorex;2;7;4;2;36;Timorex7;6;Timorex7
+Timorex;2;7;4;3;90;Timorex7;9,486832981;Timorex7
+Timorex;2;7;4;4;71;Timorex7;8,426149773;Timorex7
+Timorex;2;7;4;5;92;Timorex7;9,591663047;Timorex7
+Timorex;2;15;1;1;72;Timorex15;8,485281374;Timorex15
+Timorex;2;15;1;2;68;Timorex15;8,246211251;Timorex15
+Timorex;2;15;1;3;62;Timorex15;7,874007874;Timorex15
+Timorex;2;15;1;4;31;Timorex15;5,567764363;Timorex15
+Timorex;2;15;1;5;29;Timorex15;5,385164807;Timorex15
+Timorex;2;15;2;1;37;Timorex15;6,08276253;Timorex15
+Timorex;2;15;2;2;58;Timorex15;7,615773106;Timorex15
+Timorex;2;15;2;3;61;Timorex15;7,810249676;Timorex15
+Timorex;2;15;2;4;37;Timorex15;6,08276253;Timorex15
+Timorex;2;15;2;5;46;Timorex15;6,782329983;Timorex15
+Timorex;2;15;3;1;52;Timorex15;7,211102551;Timorex15
+Timorex;2;15;3;2;36;Timorex15;6;Timorex15
+Timorex;2;15;3;3;53;Timorex15;7,280109889;Timorex15
+Timorex;2;15;3;4;79;Timorex15;8,888194417;Timorex15
+Timorex;2;15;3;5;52;Timorex15;7,211102551;Timorex15
+Timorex;2;15;4;1;60;Timorex15;7,745966692;Timorex15
+Timorex;2;15;4;2;72;Timorex15;8,485281374;Timorex15
+Timorex;2;15;4;3;82;Timorex15;9,055385138;Timorex15
+Timorex;2;15;4;4;72;Timorex15;8,485281374;Timorex15
+Timorex;2;15;4;5;50;Timorex15;7,071067812;Timorex15
+Ziram;2;1;1;1;1;Ziram1;1;Ziram1
+Ziram;2;1;1;2;0;Ziram1;0;Ziram1
+Ziram;2;1;1;3;1;Ziram1;1;Ziram1
+Ziram;2;1;1;4;0;Ziram1;0;Ziram1
+Ziram;2;1;1;5;0;Ziram1;0;Ziram1
+Ziram;2;1;2;1;1;Ziram1;1;Ziram1
+Ziram;2;1;2;2;2;Ziram1;1,414213562;Ziram1
+Ziram;2;1;2;3;1;Ziram1;1;Ziram1
+Ziram;2;1;2;4;1;Ziram1;1;Ziram1
+Ziram;2;1;2;5;0;Ziram1;0;Ziram1
+Ziram;2;1;3;1;2;Ziram1;1,414213562;Ziram1
+Ziram;2;1;3;2;0;Ziram1;0;Ziram1
+Ziram;2;1;3;3;2;Ziram1;1,414213562;Ziram1
+Ziram;2;1;3;4;4;Ziram1;2;Ziram1
+Ziram;2;1;3;5;2;Ziram1;1,414213562;Ziram1
+Ziram;2;1;4;1;0;Ziram1;0;Ziram1
+Ziram;2;1;4;2;0;Ziram1;0;Ziram1
+Ziram;2;1;4;3;2;Ziram1;1,414213562;Ziram1
+Ziram;2;1;4;4;0;Ziram1;0;Ziram1
+Ziram;2;1;4;5;1;Ziram1;1;Ziram1
+Ziram;2;7;1;1;5;Ziram7;2,236067977;Ziram7
+Ziram;2;7;1;2;0;Ziram7;0;Ziram7
+Ziram;2;7;1;3;1;Ziram7;1;Ziram7
+Ziram;2;7;1;4;0;Ziram7;0;Ziram7
+Ziram;2;7;1;5;3;Ziram7;1,732050808;Ziram7
+Ziram;2;7;2;1;6;Ziram7;2,449489743;Ziram7
+Ziram;2;7;2;2;3;Ziram7;1,732050808;Ziram7
+Ziram;2;7;2;3;1;Ziram7;1;Ziram7
+Ziram;2;7;2;4;1;Ziram7;1;Ziram7
+Ziram;2;7;2;5;0;Ziram7;0;Ziram7
+Ziram;2;7;3;1;0;Ziram7;0;Ziram7
+Ziram;2;7;3;2;1;Ziram7;1;Ziram7
+Ziram;2;7;3;3;0;Ziram7;0;Ziram7
+Ziram;2;7;3;4;1;Ziram7;1;Ziram7
+Ziram;2;7;3;5;3;Ziram7;1,732050808;Ziram7
+Ziram;2;7;4;1;0;Ziram7;0;Ziram7
+Ziram;2;7;4;2;0;Ziram7;0;Ziram7
+Ziram;2;7;4;3;1;Ziram7;1;Ziram7
+Ziram;2;7;4;4;0;Ziram7;0;Ziram7
+Ziram;2;7;4;5;1;Ziram7;1;Ziram7
+Ziram;2;15;1;1;10;Ziram15;3,16227766;Ziram15
+Ziram;2;15;1;2;8;Ziram15;2,828427125;Ziram15
+Ziram;2;15;1;3;3;Ziram15;1,732050808;Ziram15
+Ziram;2;15;1;4;9;Ziram15;3;Ziram15
+Ziram;2;15;1;5;9;Ziram15;3;Ziram15
+Ziram;2;15;2;1;10;Ziram15;3,16227766;Ziram15
+Ziram;2;15;2;2;2;Ziram15;1,414213562;Ziram15
+Ziram;2;15;2;3;12;Ziram15;3,464101615;Ziram15
+Ziram;2;15;2;4;5;Ziram15;2,236067977;Ziram15
+Ziram;2;15;2;5;5;Ziram15;2,236067977;Ziram15
+Ziram;2;15;3;1;2;Ziram15;1,414213562;Ziram15
+Ziram;2;15;3;2;2;Ziram15;1,414213562;Ziram15
+Ziram;2;15;3;3;3;Ziram15;1,732050808;Ziram15
+Ziram;2;15;3;4;2;Ziram15;1,414213562;Ziram15
+Ziram;2;15;3;5;3;Ziram15;1,732050808;Ziram15
+Ziram;2;15;4;1;4;Ziram15;2;Ziram15
+Ziram;2;15;4;2;10;Ziram15;3,16227766;Ziram15
+Ziram;2;15;4;3;3;Ziram15;1,732050808;Ziram15
+Ziram;2;15;4;4;5;Ziram15;2,236067977;Ziram15
+Ziram;2;15;4;5;4;Ziram15;2;Ziram15
+control ;2;1;1;1;99;Control;9,949874371;Control1
+control ;2;1;1;2;74;Control;8,602325267;Control1
+control ;2;1;1;3;78;Control;8,831760866;Control1
+control ;2;1;1;4;81;Control;9;Control1
+control ;2;1;1;5;85;Control;9,219544457;Control1
+control ;2;1;2;1;73;Control;8,544003745;Control1
+control ;2;1;2;2;95;Control;9,746794345;Control1
+control ;2;1;2;3;80;Control;8,94427191;Control1
+control ;2;1;2;4;65;Control;8,062257748;Control1
+control ;2;1;2;5;67;Control;8,185352772;Control1
+control ;2;1;3;1;82;Control;9,055385138;Control1
+control ;2;1;3;2;59;Control;7,681145748;Control1
+control ;2;1;3;3;76;Control;8,717797887;Control1
+control ;2;1;3;4;69;Control;8,306623863;Control1
+control ;2;1;3;5;75;Control;8,660254038;Control1
+control ;2;1;4;1;53;Control;7,280109889;Control1
+control ;2;1;4;2;78;Control;8,831760866;Control1
+control ;2;1;4;3;72;Control;8,485281374;Control1
+control ;2;1;4;4;58;Control;7,615773106;Control1
+control ;2;1;4;5;92;Control;9,591663047;Control1
+control ;2;7;1;1;95;Control;9,746794345;Control7
+control ;2;7;1;2;74;Control;8,602325267;Control7
+control ;2;7;1;3;73;Control;8,544003745;Control7
+control ;2;7;1;4;59;Control;7,681145748;Control7
+control ;2;7;1;5;102;Control;10,09950494;Control7
+control ;2;7;2;1;83;Control;9,110433579;Control7
+control ;2;7;2;2;106;Control;10,29563014;Control7
+control ;2;7;2;3;89;Control;9,433981132;Control7
+control ;2;7;2;4;97;Control;9,848857802;Control7
+control ;2;7;2;5;73;Control;8,544003745;Control7
+control ;2;7;3;1;76;Control;8,717797887;Control7
+control ;2;7;3;2;83;Control;9,110433579;Control7
+control ;2;7;3;3;62;Control;7,874007874;Control7
+control ;2;7;3;4;57;Control;7,549834435;Control7
+control ;2;7;3;5;83;Control;9,110433579;Control7
+control ;2;7;4;1;45;Control;6,708203932;Control7
+control ;2;7;4;2;63;Control;7,937253933;Control7
+control ;2;7;4;3;68;Control;8,246211251;Control7
+control ;2;7;4;4;73;Control;8,544003745;Control7
+control ;2;7;4;5;59;Control;7,681145748;Control7
+control ;2;15;1;1;97;Control;9,848857802;Control15
+control ;2;15;1;2;91;Control;9,539392014;Control15
+control ;2;15;1;3;79;Control;8,888194417;Control15
+control ;2;15;1;4;70;Control;8,366600265;Control15
+control ;2;15;1;5;74;Control;8,602325267;Control15
+control ;2;15;2;1;87;Control;9,327379053;Control15
+control ;2;15;2;2;81;Control;9;Control15
+control ;2;15;2;3;114;Control;10,67707825;Control15
+control ;2;15;2;4;68;Control;8,246211251;Control15
+control ;2;15;2;5;85;Control;9,219544457;Control15
+control ;2;15;3;1;69;Control;8,306623863;Control15
+control ;2;15;3;2;90;Control;9,486832981;Control15
+control ;2;15;3;3;87;Control;9,327379053;Control15
+control ;2;15;3;4;70;Control;8,366600265;Control15
+control ;2;15;3;5;39;Control;6,244997998;Control15
+control ;2;15;4;1;45;Control;6,708203932;Control15
+control ;2;15;4;2;100;Control;10;Control15
+control ;2;15;4;3;102;Control;10,09950494;Control15
+control ;2;15;4;4;68;Control;8,246211251;Control15
+control ;2;15;4;5;72;Control;8,485281374;Control15
