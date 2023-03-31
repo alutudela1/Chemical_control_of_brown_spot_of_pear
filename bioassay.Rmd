@@ -11,9 +11,11 @@ output:
 ## Preventive treatments: Disease severity analysis (spots per fruit) 
 
 ```{r}
-sev_prev<-rio::import("data/preventive_treatments.csv", sep=";", header=TRUE, dec=",")
-sev_prev<-read.table("preventive_treatments.csv", sep=";", header=TRUE, dec=",")
-sev_prev<-rio::import("data/bioassay.csv")
+source(here::here("setup.R"))
+
+sev_prev <- rio::import("data/bioassay.csv")
+
+
 str(sev_prev)
 sev_prev$day<- as.factor(sev_prev$day)
 sev_prev$repetition<- as.factor(sev_prev$repetition)
@@ -34,8 +36,22 @@ ftable(xtabs(~ treatment + day + repetition + replicate, sev_prev))
 Graphics 
 
 ```{r warning=FALSE}
-sev_prev %>% ggplot() + aes(x=treatment, y = spots_per_fruit) + geom_boxplot() +  geom_boxplot(alpha=.5, width = .2) + geom_jitter(col=2) + geom_point(alpha=.7) + labs(x="Treatment", y="Severity (spots per fruit)")
-sev_prev %>% ggplot() + aes(x=treatment, y = spots_per_fruit) + geom_boxplot(alpha=.5, width = .2) + geom_point(alpha=.7) + labs(x="Treatments", y="Severity)")
+sev_prev %>% 
+  ggplot() + 
+  aes(x=treatment, y = spots_per_fruit) + 
+  geom_boxplot() +  
+  geom_boxplot(alpha=.5, width = .2) + 
+  geom_jitter(col=2) + 
+  geom_point(alpha=.7) + 
+  labs(x="Treatment", y="Severity (spots per fruit)")
+
+sev_prev %>% 
+  ggplot() + 
+  aes(x=treatment, y = spots_per_fruit) + 
+  geom_boxplot(alpha=.5, width = .2) + 
+  geom_point(alpha=.7) + 
+  labs(x="Treatments", y="Severity)")
+
 plot(sev_prev$spots_per_fruit,method="stack", vertical=TRUE, pch=0, main="Dot plot", ylab="Spots per fruit", col="black")
 ggplot(sev_prev,aes(x=treatment, y=spots_per_fruit, fill=treatment))+geom_bar(stat="identity")+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 a<- ggplot(sev_prev,aes(x=treatment, y=spots_per_fruit, fill=treatment))+geom_bar(stat="identity")+ facet_grid(.~day)
@@ -46,7 +62,7 @@ g_a
 Model
 
 ```{r}
-mod_gls3 <- gls(s.r.spots ~ 1+treatment+day+treatment:day,
+mod_gls3 <- gls(s.r.spots ~ 1 + treatment+day+treatment:day,
                 weights=varComb(varIdent(form=~1|treatment*day)),
                 method="REML", na.action=na.omit,data=sev_prev)
 summary(mod_gls3)
@@ -60,8 +76,10 @@ Means comparison test
 
 ```{r}
 mediasml2 = emmeans(mod_gls3, ~ treatment*day) 
+
 pairs(mediasml2, adjust= "Tukey")
-glsinc = cld(mediasml2, alpha=0.05, Letters=letters, adjust= "Tukey")
+
+glsinc = cld(mediasml2, alpha=0.05, Letters=letters, adjust= "sidak")
 glsinc
 glsinc1 = as.tibble(glsinc)
 pd  <- position_dodge(0.9) 
@@ -72,13 +90,24 @@ ggplot(glsinc1, aes(x = treatment, y = emmean, fill= treatment)) +
   geom_point(position=pd, size=3,  col = "blue")+ 
   geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.01) + 
   ylab("Spots per fruit emmeans")
+```
+
+
+```{r}
 glsimedia2022  <- emmeans(mod_gls3, ~ treatment*day, by = "day")
 pairs(glsimedia2022 , adjust= "Tukey", type="response")
 medias_conjunto = cld(glsimedia2022, alpha=0.05, Letters=letters, adjust= "Tukey")
 medias_conjunto
+
 anidado_prev = as.tibble(medias_conjunto)
 pd  <- position_dodge(0.9) 
-ggplot(anidado_prev, aes(x = treatment, y = emmean, fill= treatment)) + facet_wrap(~day) + geom_col(position = "dodge")  + geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), colour = "black", width=0.1, position = pd) + geom_point(position=pd, size=3,  col = "blue")+ geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.4) + ylab("Spots per fruit emmeans")
+ggplot(anidado_prev, aes(x = treatment, y = emmean, fill= treatment)) + facet_wrap(~day) + 
+  geom_col(position = "dodge")  + 
+  geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), colour = "black", width=0.1, position = pd) + geom_point(position=pd, size=3,  col = "blue")+ geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.4) + ylab("Spots per fruit emmeans")
+```
+
+
+```{r}
 ```
 
 
@@ -111,7 +140,8 @@ prop.test(c(25,18),n=c(40,40))
 ## Curative treatments: Disease severity analysis (spots per fruit) 
 
 ```{r}
-curativo_dat<-read.table("curative treatments.csv", sep=";", header=TRUE, dec=",")
+curativo_dat<-read.table("data/curative_treatments.csv", sep=";", header=TRUE, dec=",")
+
 curativo_dat$repetition<- as.factor(curativopaper$repetition)
 curativo_dat$replicate<- as.factor(curativopaper$replicate)
 

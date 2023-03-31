@@ -11,7 +11,9 @@ pacman::p_load(
   tidyverse, 
   medrc,# EC50 estimations and comparisons
   janitor, 
-  huxtable
+  huxtable,
+  emmeans, 
+  multcomp
 )
 conflicted::conflict_prefer("filter", "dplyr")
 conflicted::conflict_prefer("select", "dplyr")
