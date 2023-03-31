@@ -12,17 +12,21 @@ output:
 
 ```{r}
 source(here::here("setup.R"))
-
 sev_prev <- rio::import("data/bioassay.csv")
+```
 
 
+```{r}
 str(sev_prev)
 sev_prev$day<- as.factor(sev_prev$day)
 sev_prev$repetition<- as.factor(sev_prev$repetition)
 sev_prev$replicate<- as.factor(sev_prev$replicate)
 str(sev_prev)
 glimpse(sev_prev)
+```
 
+
+```{r}
 ```
 
 Data scheme
