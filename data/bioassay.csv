@@ -1,4 +1,4 @@
-treatment,repetition,day,replicate,fruit,spots_per_fruit,treatment.day.1,s.r.spots,treatment.day
+fungicide,repetition,day,replicate,fruit,spots_per_fruit,treatment.day.1,s.r.spots,treatment.day
 Bellis,1,1,1,1,1,Bellis1,1,Bellis1
 Bellis,1,1,1,2,0,Bellis1,0,Bellis1
 Bellis,1,1,1,3,0,Bellis1,0,Bellis1

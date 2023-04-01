@@ -1,118 +1,118 @@
 ---
-title: "Bioassays in fruits"
-author: "Marisa A.A. Tudela"
-date: "2023-03-01"
-output:
-  pdf_document: default
-  html_document: default
+output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 # Bioassays in fruits
 
-## Preventive treatments: Disease severity analysis (spots per fruit) 
+## Preventive treatments: 
+
+Disease severity analysis (spots per fruit) 
 
 ```{r}
 source(here::here("setup.R"))
-sev_prev <- rio::import("data/bioassay.csv")
+# library(lme4)
+library(glmmTMB)
+library(DHARMa)
+library(performance)
+raw <- rio::import("data/bioassay_data.csv") %>% 
+  select(fungicide, repetition, day, replicate, fruit, spots_per_fruit) 
 ```
 
 
 ```{r}
-str(sev_prev)
-sev_prev$day<- as.factor(sev_prev$day)
-sev_prev$repetition<- as.factor(sev_prev$repetition)
-sev_prev$replicate<- as.factor(sev_prev$replicate)
-str(sev_prev)
-glimpse(sev_prev)
-```
+dat <- raw %>% 
+  # mutate_at(vars(dose, colony_diameter), as.numeric) %>% 
+  mutate_at(vars(fungicide, repetition, day, replicate, fruit), as.factor) %>% 
+    mutate(fungicide=fct_relevel(fungicide, "control"))  
 
-
-```{r}
+dat %>% str
 ```
 
 Data scheme
 
 ```{r}
-sev_prev %>% str
-ftable(xtabs(~ treatment + day + repetition + replicate, sev_prev))
-
+ftable(xtabs(~ fungicide + day + repetition + replicate, dat))
 ```
 
 Graphics 
 
-```{r warning=FALSE}
-sev_prev %>% 
+```{r}
+dat %>% 
   ggplot() + 
-  aes(x=treatment, y = spots_per_fruit) + 
-  geom_boxplot() +  
-  geom_boxplot(alpha=.5, width = .2) + 
-  geom_jitter(col=2) + 
-  geom_point(alpha=.7) + 
-  labs(x="Treatment", y="Severity (spots per fruit)")
-
-sev_prev %>% 
-  ggplot() + 
-  aes(x=treatment, y = spots_per_fruit) + 
-  geom_boxplot(alpha=.5, width = .2) + 
-  geom_point(alpha=.7) + 
-  labs(x="Treatments", y="Severity)")
-
-plot(sev_prev$spots_per_fruit,method="stack", vertical=TRUE, pch=0, main="Dot plot", ylab="Spots per fruit", col="black")
-ggplot(sev_prev,aes(x=treatment, y=spots_per_fruit, fill=treatment))+geom_bar(stat="identity")+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-a<- ggplot(sev_prev,aes(x=treatment, y=spots_per_fruit, fill=treatment))+geom_bar(stat="identity")+ facet_grid(.~day)
-g_a <- a + scale_fill_grey()  
-g_a
+  aes(x=day, y=spots_per_fruit) + 
+  geom_boxplot(width=.5) + 
+  geom_jitter(width=.2, col=2, alpha=.5) + 
+  labs(x="Treatment", y="Severity (spots per fruit)") + 
+  facet_grid(repetition~fungicide)
 ```
 
-Model
+```{r}
+dat %>% 
+  count(spots_per_fruit) %>% 
+  ggplot() + 
+  aes(x=spots_per_fruit, y=n) + 
+  geom_col()
+```
+
+Model fitting
+
+```{r,eval=FALSE}
+# https://glmmtmb.github.io/glmmTMB/articles/glmmTMB.pdf
+fit_zipoisson <- glmmTMB(spots_per_fruit~fungicide*day +
+                           (1|repetition/replicate),
+               ziformula = ~1, family = poisson,
+             dat)
+# performance::check_overdispersion(fit_zipoisson)
+# simulateResiduals(fit_zipoisson) %>% testResiduals()
+```
 
 ```{r}
-mod_gls3 <- gls(s.r.spots ~ 1 + treatment+day+treatment:day,
-                weights=varComb(varIdent(form=~1|treatment*day)),
-                method="REML", na.action=na.omit,data=sev_prev)
-summary(mod_gls3)
-car::Anova(mod_gls3, type="III")
-sum(residuals(mod_gls3, type="pearson")^2)
-pchisq(585, 585, lower.tail = F)
+fit_zinbinom <- update(fit_zipoisson,family=nbinom2)
+fit_zinbinom1 <- update(fit_zipoisson,family=nbinom1)
+fit_twediee <- update(fit_zipoisson,family=tweedie())
 
+fit_hnbinom1 <- update(fit_zinbinom1,
+                       ziformula=~., data=dat,
+                       family=truncated_nbinom1)
+
+AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee, fit_hnbinom1)
+
+#               df      AIC
+# fit_zipoisson 18 3895.200
+# fit_zinbinom  19 3489.228
+# fit_zinbinom1 19 3418.201
+# fit_twediee   20 3405.606
+# fit_hnbinom1  35       NA
+```
+
+```{r}
+performance::check_overdispersion(fit_zinbinom1)
+simulateResiduals(fit_zinbinom1) %>% testResiduals()
+```
+
+```{r}
+car::Anova(fit_zinbinom1)
 ```
 
 Means comparison test
 
 ```{r}
-mediasml2 = emmeans(mod_gls3, ~ treatment*day) 
+emm <- emmeans(fit_zinbinom1, ~ fungicide|day, type="response") 
+res <- cld(mediasml2, alpha=0.05, Letters=letters,  type="response")
+res
 
-pairs(mediasml2, adjust= "Tukey")
-
-glsinc = cld(mediasml2, alpha=0.05, Letters=letters, adjust= "sidak")
-glsinc
-glsinc1 = as.tibble(glsinc)
-pd  <- position_dodge(0.9) 
-ggplot(glsinc1, aes(x = treatment, y = emmean, fill= treatment)) +
-  facet_wrap(~day) + geom_col(position ="dodge")  + 
-  geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), 
-                colour = "black", width=0.4, position = pd) + 
-  geom_point(position=pd, size=3,  col = "blue")+ 
-  geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.01) + 
-  ylab("Spots per fruit emmeans")
+res %>% 
+  ggplot()+
+  aes(x=day, y =response)+
+  geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
+  geom_col(alpha=.2, width=.2)+
+  facet_wrap("fungicide")
 ```
 
-
-```{r}
-glsimedia2022  <- emmeans(mod_gls3, ~ treatment*day, by = "day")
-pairs(glsimedia2022 , adjust= "Tukey", type="response")
-medias_conjunto = cld(glsimedia2022, alpha=0.05, Letters=letters, adjust= "Tukey")
-medias_conjunto
-
-anidado_prev = as.tibble(medias_conjunto)
-pd  <- position_dodge(0.9) 
-ggplot(anidado_prev, aes(x = treatment, y = emmean, fill= treatment)) + facet_wrap(~day) + 
-  geom_col(position = "dodge")  + 
-  geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), colour = "black", width=0.1, position = pd) + geom_point(position=pd, size=3,  col = "blue")+ geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.4) + ylab("Spots per fruit emmeans")
-```
-
-
-```{r}
-```
+#########
+HASTA ACA
+#########
 
 
 Disease incidence analysis (proportion of affected fruit) 
