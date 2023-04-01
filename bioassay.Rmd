@@ -70,35 +70,29 @@ fit_zipoisson <- glmmTMB(spots_per_fruit~fungicide*day +
 ```{r}
 fit_zinbinom <- update(fit_zipoisson,family=nbinom2)
 fit_zinbinom1 <- update(fit_zipoisson,family=nbinom1)
-fit_twediee <- update(fit_zipoisson,family=tweedie())
-
-fit_hnbinom1 <- update(fit_zinbinom1,
-                       ziformula=~., data=dat,
-                       family=truncated_nbinom1)
-
-AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee, fit_hnbinom1)
-
+fit_twediee <- update(fit_zipoisson,family=tweedie)
+AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee)
 #               df      AIC
 # fit_zipoisson 18 3895.200
 # fit_zinbinom  19 3489.228
 # fit_zinbinom1 19 3418.201
 # fit_twediee   20 3405.606
-# fit_hnbinom1  35       NA
+```
+
+Goodness of fit
+
+```{r}
+simulateResiduals(fit_twediee) %>% testResiduals()
 ```
 
 ```{r}
-performance::check_overdispersion(fit_zinbinom1)
-simulateResiduals(fit_zinbinom1) %>% testResiduals()
-```
-
-```{r}
-car::Anova(fit_zinbinom1)
+car::Anova(fit_twediee)
 ```
 
 Means comparison test
 
 ```{r}
-emm <- emmeans(fit_zinbinom1, ~ fungicide|day, type="response") 
+emm <- emmeans(fit_twediee, ~ fungicide|day, type="response") 
 res <- cld(mediasml2, alpha=0.05, Letters=letters,  type="response")
 res
 
