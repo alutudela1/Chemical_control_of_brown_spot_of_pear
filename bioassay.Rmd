@@ -1,31 +1,27 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 # Bioassays in fruits
 
-## Preventive treatments: 
+## Preventive treatments
 
 Disease severity analysis (spots per fruit) 
 
 ```{r}
 source(here::here("setup.R"))
-# library(lme4)
+library(lme4)
 library(glmmTMB)
 library(DHARMa)
-library(performance)
-raw <- rio::import("data/bioassay_data.csv") %>% 
-  select(fungicide, repetition, day, replicate, fruit, spots_per_fruit) 
+
+theme_set(theme_bw(base_size=12))
 ```
 
 
 ```{r}
-dat <- raw %>% 
-  # mutate_at(vars(dose, colony_diameter), as.numeric) %>% 
+dat <- rio::import("data/bioassay_data.csv") %>%
   mutate_at(vars(fungicide, repetition, day, replicate, fruit), as.factor) %>% 
-    mutate(fungicide=fct_relevel(fungicide, "control"))  
+  mutate(fungicide=fct_relevel(fungicide, "control"))
+```
 
+
+```{r}
 dat %>% str
 ```
 
@@ -35,7 +31,7 @@ Data scheme
 ftable(xtabs(~ fungicide + day + repetition + replicate, dat))
 ```
 
-Graphics 
+### Disease severity 
 
 ```{r}
 dat %>% 
@@ -57,9 +53,9 @@ dat %>%
 
 Model fitting
 
-```{r,eval=FALSE}
+```{r}
 # https://glmmtmb.github.io/glmmTMB/articles/glmmTMB.pdf
-fit_zipoisson <- glmmTMB(spots_per_fruit~fungicide*day +
+fit_zipoisson_prev <- glmmTMB(spots_per_fruit~fungicide*day +
                            (1|repetition/replicate),
                ziformula = ~1, family = poisson,
              dat)
@@ -68,9 +64,9 @@ fit_zipoisson <- glmmTMB(spots_per_fruit~fungicide*day +
 ```
 
 ```{r}
-fit_zinbinom <- update(fit_zipoisson,family=nbinom2)
-fit_zinbinom1 <- update(fit_zipoisson,family=nbinom1)
-fit_twediee <- update(fit_zipoisson,family=tweedie)
+fit_zinbinom_prev <- update(fit_zipoisson_prev,family=nbinom2)
+fit_zinbinom1_prev <- update(fit_zipoisson,family=nbinom1)
+fit_twediee_prev <- update(fit_zipoisson,family=tweedie)
 AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee)
 #               df      AIC
 # fit_zipoisson 18 3895.200
@@ -92,9 +88,10 @@ car::Anova(fit_twediee)
 Means comparison test
 
 ```{r}
-emm <- emmeans(fit_twediee, ~ fungicide|day, type="response") 
-res <- cld(mediasml2, alpha=0.05, Letters=letters,  type="response")
-res
+emm_prev <- emmeans(fit_twediee_prev, ~ fungicide|day, type="response") 
+res_prev <- cld(emm_prev, alpha=0.05, Letters=letters,  type="response")
+res_prev %>% 
+   mutate(`%Control`=abs((response/filter(.,fungicide=="Control")%>% pull(response)-1)*100)) 
 
 res %>% 
   ggplot()+
@@ -104,105 +101,145 @@ res %>%
   facet_wrap("fungicide")
 ```
 
-#########
-HASTA ACA
-#########
+### Disease incidence
 
-
-Disease incidence analysis (proportion of affected fruit) 
-
-**Bellis day 1- Bellis day 7:** 
 ```{r}
-prop.test(c(5,30),n=c(40,40))
-```
-**Bellis day 1 – Merpan day 1:**
-```{r}
-prop.test(c(5,18),n=c(40,40)) 
-```
-**Bellis day 1 – Ziram day 1:**
-```{r}
-prop.test(c(5,25),n=c(40,40))
+dat_inc <- dat %>% 
+  filter(!fungicide=="control") %>% 
+  group_by(fungicide, repetition, day, replicate, fruit) %>% 
+  summarise(diseased = spots_per_fruit >0) %>% 
+  group_by(fungicide, repetition, day, replicate) %>% 
+  summarise(n= sum(!is.na(diseased)),
+            inc_prop=mean(diseased)) %>% 
+  data.frame
 ```
 
-**Ziram day 7 – Ziram 15:**
 ```{r}
-prop.test(c(25,40),n=c(40,40))
+mod_inc <- glmer(inc_prop ~ fungicide*day +
+                   (1|repetition/replicate),
+                 weights=n,family=binomial, 
+                 data=dat_inc)
+
+simulateResiduals(mod_inc) %>% testResiduals()
 ```
-**Ziram day 1 – Merpan day 1:**
-```{r}
-prop.test(c(25,18),n=c(40,40))
 
+```{r}
+emm_inc <- emmeans(mod_inc, ~ day|fungicide, type="response") 
+res_inc <- cld(emm_inc, alpha=0.05, Letters=letters,  type="response")
+res_inc
 ```
 
+```{r}
+res_inc %>% 
+  ggplot()+
+  aes(x=day, y =prob)+
+  geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
+  geom_col(alpha=.2, width=.2)+
+  facet_wrap("fungicide")
+```
 
-## Curative treatments: Disease severity analysis (spots per fruit) 
+## Curative treatments
+
 
 ```{r}
-curativo_dat<-read.table("data/curative_treatments.csv", sep=";", header=TRUE, dec=",")
-
-curativo_dat$repetition<- as.factor(curativopaper$repetition)
-curativo_dat$replicate<- as.factor(curativopaper$replicate)
-
+cura <- rio::import("data/curative.csv") %>% 
+   mutate_at(vars(fungicide, repetition, replicate, fruit), as.factor) %>% 
+  mutate(fungicide=fct_relevel(fungicide, "Control")) 
 ```
 
 Data scheme
 
 ```{r}
-curativo_dat %>% str
-ftable(xtabs(~ treatment + repetition + replicate, curativo_dat))
-
+cura %>% str
+ftable(xtabs(~ fungicide + repetition + replicate, cura))
 ```
 
-Graphics 
+### Disease severity (spots per fruit) 
 
-```{r warning=FALSE}
-plot(curativo_dat$spots.per.fruit,method="stack", vertical=TRUE, pch=0, main="Dot plot", ylab="Spots per fruit", col="black")
-ggboxplot(curativo_dat, y= "spots.per.fruit", x = c("treatment"), 
-          merge = TRUE, color="treatment", pallete="jco")
-ggplot(curativopaper,aes(x=treatment, y=spots.per.fruit, fill=treatment))+geom_bar(stat="identity")+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```{r}
+cura %>% 
+  ggplot() + 
+  aes(x=fungicide, y=spots_per_fruit) + 
+  geom_boxplot(width=.5) + 
+  geom_jitter(width=.2, col=2, alpha=.5) + 
+  labs(x="Treatment", y="Severity (spots per fruit)") + 
+  facet_wrap("repetition")
 ```
 
-Model
+Model fitting
 
-```{r warning=FALSE}
-m_REML<- gls(r.s.spots ~1+treatment.,weights=varComb(varIdent(form=~1|treatment)),method="REML",na.action=na.omit,data=curativo_dat)
-summary(m_REML)
-performance::check_homogeneity(m_REML)
-sum(residuals(m_REML, type="pearson")^2)
-pchisq(195, 195, lower.tail = F)
-Anova(m_REML, type="II")
+```{r,eval=FALSE}
+# https://glmmtmb.github.io/glmmTMB/articles/glmmTMB.pdf
+fit_zipoisson <- glmmTMB(spots_per_fruit~fungicide +
+                           (1|repetition/replicate),
+               ziformula = ~1, family = poisson,
+             cura)
+# performance::check_overdispersion(fit_zipoisson)
+# simulateResiduals(fit_zipoisson) %>% testResiduals()
+```
+
+```{r}
+fit_zinbinom <- update(fit_zipoisson,family=nbinom2)
+fit_zinbinom1 <- update(fit_zipoisson,family=nbinom1)
+fit_twediee <- update(fit_zipoisson,family=tweedie)
+AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee)
+
+#               df      AIC
+# fit_zipoisson  8 1270.421
+# fit_zinbinom   9 1176.582
+# fit_zinbinom1  9 1182.421
+# fit_twediee   10 1180.572
+```
+
+Goodness of fit
+
+```{r}
+simulateResiduals(fit_twediee) %>% testResiduals()
+```
+
+```{r}
+car::Anova(fit_twediee)
 ```
 
 Means comparison test
+
 ```{r}
-mediasmd1 = emmeans(m_REML, ~ treatment)
-pairs(mediasmd1, adjust= "Tukey")
-cld(mediasmd1, alpha=0.05, Letters=letters, adjust= "Tukey")
-mediasd1 = cld(mediasmd1, alpha=0.05, Letters=letters, adjust= "Tukey")
-tablamedia = as.tibble(mediasd1)
-pd  <- position_dodge(0.9) 
+emm_cura <- emmeans(fit_twediee, ~ fungicide, type="response") 
+res_cura <- cld(emm_cura, alpha=0.05, Letters=letters,  type="response")
+res_cura %>% 
+    mutate(`%Control`=abs((response/filter(.,fungicide=="Control")%>% pull(response)-1)*100)) 
 
-ggplot(tablamedia, aes(x = treatment, y = emmean, fill= treatment)) + geom_col(position = "dodge")  + geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), colour = "black", width=0.1, position = pd) + geom_point(position=pd, size=3,  col = "blue")+ geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.01) + ylab("spots per fruit emmeans")
-g_d1 <-ggplot(tablamedia, aes(x=reorder(Treatment.,-emmean), y=emmean, fill=Treatment.)) + geom_col(position = "dodge")  + geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE), colour = "black", width=0.1, position = pd) + geom_point(position=pd, size=3,  col = "blue")+ geom_text(aes(label = .group, y = emmean + SE),position=pd, hjust = -0.4) + ylab("Spots per fruit emmeans")
-g_d1a <- g_d1 + scale_fill_grey()
-g_d1a
+res_cura %>% 
+  ggplot()+
+  aes(x=fungicide, y =response)+
+  geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
+  geom_col(alpha=.2, width=.2)
 ```
 
-Disease incidence analysis (proportionality test).
+### Disease incidence
 
-**Bellis vs Control**
-```{r warning=FALSE}
-prop.test(c(18,20),n=c(20,20))
-```
-**Ziram vs Control**
-```{r warning=FALSE}
-prop.test(c(19,20),n=c(20,20))
-```
-**Merpan vs Bellis**
-```{r warning=FALSE}
-prop.test(c(19,18),n=c(20,20))
+```{r}
+cura_inc <- cura %>% 
+  # filter(!fungicide=="control") %>% 
+  group_by(fungicide, repetition, replicate, fruit) %>% 
+  summarise(diseased = spots_per_fruit >0) %>% 
+  group_by(fungicide, repetition, replicate) %>% 
+  summarise(n= sum(!is.na(diseased)),
+            inc_prop=mean(diseased)) %>% 
+  data.frame
 ```
 
+```{r}
+mod_inc_cura <- glmer(inc_prop ~ fungicide +
+                   (1|repetition/replicate),
+                 weights=n,family=binomial, 
+                 data=cura_inc)
 
+simulateResiduals(mod_inc_cura) %>% testResiduals()
+```
 
-
+```{r}
+emm_inc_cura <- emmeans(mod_inc_cura, ~ fungicide, type="response") 
+res_inc_cura <- cld(emm_inc_cura, alpha=0.05, Letters=letters,  type="response")
+res_inc_cura
+```
