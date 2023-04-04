@@ -3,9 +3,9 @@ knitr::opts_chunk$set(echo = T, warning = FALSE, message = FALSE,
 
 # install.packages('BiocManager')
 # install.packages('devtools')
-# devtools::install_github("DoseResponse/drcData")
-# devtools::install_github("DoseResponse/drc")
-# devtools::install_github("DoseResponse/medrc")
+devtools::install_github("DoseResponse/drcData")
+devtools::install_github("DoseResponse/drc")
+devtools::install_github("DoseResponse/medrc")
 
 pacman::p_load(
   tidyverse, 

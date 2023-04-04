@@ -18,7 +18,7 @@ str(dat)
 Data scheme
 
 ```{r}
-ftable(xtabs(~ treatment + replicate + season, dat))
+ftable(xtabs(~ fungicide + tree + season, dat))
 ```
 
 Model

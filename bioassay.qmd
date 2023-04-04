@@ -114,6 +114,8 @@ dat_inc <- dat %>%
   data.frame
 ```
 
+Model 
+
 ```{r}
 mod_inc <- glmer(inc_prop ~ fungicide*day +
                    (1|repetition/replicate),
@@ -122,6 +124,8 @@ mod_inc <- glmer(inc_prop ~ fungicide*day +
 
 simulateResiduals(mod_inc) %>% testResiduals()
 ```
+
+Means comparison test 
 
 ```{r}
 emm_inc <- emmeans(mod_inc, ~ day|fungicide, type="response") 
@@ -139,7 +143,6 @@ res_inc %>%
 ```
 
 ## Curative treatments
-
 
 ```{r}
 cura <- rio::import("data/curative.csv") %>% 
@@ -229,14 +232,23 @@ cura_inc <- cura %>%
   data.frame
 ```
 
+Model 
+
 ```{r}
 mod_inc_cura <- glmer(inc_prop ~ fungicide +
                    (1|repetition/replicate),
                  weights=n,family=binomial, 
                  data=cura_inc)
+```
 
+Goodness of fit
+
+```{r}
 simulateResiduals(mod_inc_cura) %>% testResiduals()
 ```
+
+
+Means comparison test
 
 ```{r}
 emm_inc_cura <- emmeans(mod_inc_cura, ~ fungicide, type="response") 
