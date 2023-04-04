@@ -65,9 +65,9 @@ fit_zipoisson_prev <- glmmTMB(spots_per_fruit~fungicide*day +
 
 ```{r}
 fit_zinbinom_prev <- update(fit_zipoisson_prev,family=nbinom2)
-fit_zinbinom1_prev <- update(fit_zipoisson,family=nbinom1)
-fit_twediee_prev <- update(fit_zipoisson,family=tweedie)
-AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee)
+fit_zinbinom1_prev <- update(fit_zipoisson_prev,family=nbinom1)
+fit_twediee_prev <- update(fit_zipoisson_prev,family=tweedie)
+AIC(fit_zipoisson_prev,fit_zinbinom_prev,fit_zinbinom1_prev, fit_twediee_prev)
 #               df      AIC
 # fit_zipoisson 18 3895.200
 # fit_zinbinom  19 3489.228
@@ -78,11 +78,11 @@ AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee)
 Goodness of fit
 
 ```{r}
-simulateResiduals(fit_twediee) %>% testResiduals()
+simulateResiduals(fit_twediee_prev) %>% testResiduals()
 ```
 
 ```{r}
-car::Anova(fit_twediee)
+car::Anova(fit_twediee_prev)
 ```
 
 Means comparison test
