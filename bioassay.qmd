@@ -1,4 +1,9 @@
-# Bioassays in fruits
+---
+title: "Bioassays in fruits"
+date: '`r paste("Actualizado en", Sys.Date())`'
+format: pdf
+---
+
 
 ## Preventive treatments
 
@@ -91,9 +96,9 @@ Means comparison test
 emm_prev <- emmeans(fit_twediee_prev, ~ fungicide|day, type="response") 
 res_prev <- cld(emm_prev, alpha=0.05, Letters=letters,  type="response")
 res_prev %>% 
-   mutate(`%Control`=abs((response/filter(.,fungicide=="Control")%>% pull(response)-1)*100)) 
+   mutate(`%Control`=abs((response/filter(.,fungicide=="control")%>% pull(response)-1)*100)) 
 
-res %>% 
+res_prev %>% 
   ggplot()+
   aes(x=day, y =response)+
   geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
@@ -159,6 +164,7 @@ ftable(xtabs(~ fungicide + repetition + replicate, cura))
 
 ### Disease severity (spots per fruit) 
 
+**Box plot: severity per treatment and repetition (1 and 2)**
 ```{r}
 cura %>% 
   ggplot() + 
@@ -171,21 +177,21 @@ cura %>%
 
 Model fitting
 
-```{r,eval=FALSE}
+```{r,eval=TRUE}
 # https://glmmtmb.github.io/glmmTMB/articles/glmmTMB.pdf
-fit_zipoisson <- glmmTMB(spots_per_fruit~fungicide +
-                           (1|repetition/replicate),
-               ziformula = ~1, family = poisson,
-             cura)
+fit_zipoisson_cur <- glmmTMB(spots_per_fruit~fungicide +
+                               (1|repetition/replicate),
+                             ziformula = ~1, 
+                             family = poisson,data = cura)
 # performance::check_overdispersion(fit_zipoisson)
 # simulateResiduals(fit_zipoisson) %>% testResiduals()
 ```
 
 ```{r}
-fit_zinbinom <- update(fit_zipoisson,family=nbinom2)
-fit_zinbinom1 <- update(fit_zipoisson,family=nbinom1)
-fit_twediee <- update(fit_zipoisson,family=tweedie)
-AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee)
+fit_zinbinom_cur <- update(fit_zipoisson_cur,family=nbinom2)
+fit_zinbinom1_cur <- update(fit_zipoisson_cur,family=nbinom1)
+fit_twediee_cur <- update(fit_zipoisson_cur,family=tweedie)
+AIC(fit_zipoisson_cur,fit_zinbinom_cur,fit_zinbinom1_cur, fit_twediee_cur)
 
 #               df      AIC
 # fit_zipoisson  8 1270.421
@@ -197,17 +203,17 @@ AIC(fit_zipoisson,fit_zinbinom,fit_zinbinom1, fit_twediee)
 Goodness of fit
 
 ```{r}
-simulateResiduals(fit_twediee) %>% testResiduals()
+simulateResiduals(fit_twediee_cur) %>% testResiduals()
 ```
 
 ```{r}
-car::Anova(fit_twediee)
+car::Anova(fit_twediee_cur)
 ```
 
 Means comparison test
 
 ```{r}
-emm_cura <- emmeans(fit_twediee, ~ fungicide, type="response") 
+emm_cura <- emmeans(fit_twediee_cur, ~ fungicide, type="response") 
 res_cura <- cld(emm_cura, alpha=0.05, Letters=letters,  type="response")
 res_cura %>% 
     mutate(`%Control`=abs((response/filter(.,fungicide=="Control")%>% pull(response)-1)*100)) 

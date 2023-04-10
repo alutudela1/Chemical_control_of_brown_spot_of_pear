@@ -1,7 +1,7 @@
 ---
-output: html_document
-editor_options: 
-  chunk_output_type: console
+title: "In-field assays"
+date: '`r paste("Actualizado en", Sys.Date())`'
+format: pdf
 ---
 ```{r}
 source(here::here("setup.R"))
