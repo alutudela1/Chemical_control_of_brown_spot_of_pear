@@ -1,5 +1,5 @@
 ---
-title: "Fungicide efficay In vitro"
+title: "In vitro experiments"
 date: '`r paste("Actualizado en", Sys.Date())`'
 format: pdf
 ---
@@ -90,7 +90,7 @@ ed_comp <- EDcomp(mod_mg,
 
 As we compare EC50 ratios between fungicides, if the confidence interval does not contain 1, fungicides differ among them: 
 
-```{r}
+```{r, eval=FALSE}
 ed_comp %>% 
   ggplot()+ 
   aes(x=comp, y=Estimate) + 
@@ -100,8 +100,6 @@ ed_comp %>%
   coord_flip() + 
   labs(col="Relative to 1")
 ```
-
-Bellis < Merpan  < Timorex < Ziram
 
 ```{r}
 dat %>% 
@@ -138,7 +136,7 @@ ftable(xtabs(complete.cases(germination_percent)~fungicide+dose+strain , data=ge
 
 Meta-analysis 
 
-```{r}
+```{r, error=FALSE, message=FALSE}
 mod_germ <- metadrm(germination_percent ~ dose_, 
                data=germi_dat,
                fct=LL.3(),
@@ -172,7 +170,7 @@ coef_mod_germ <- summary(mod_germ) %>% data.frame %>%
 ```
 
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 germ_comp %>% 
   ggplot()+ 
   aes(x=comp, y=Estimate) + 
