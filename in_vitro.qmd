@@ -172,7 +172,7 @@ coef_mod_germ <- summary(mod_germ) %>% data.frame %>%
 ```
 
 
-```{r}
+```{r eval=FALSE}
 germ_comp %>% 
   ggplot()+ 
   aes(x=comp, y=Estimate) + 
@@ -181,8 +181,6 @@ germ_comp %>%
   coord_flip() + 
   labs(col="Relative to 1")
 ```
-
-> Bellis < Ziram < Merpan  <  Timorex
 
 ```{r}
 germi_dat %>% 

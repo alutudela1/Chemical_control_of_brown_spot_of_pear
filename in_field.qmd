@@ -3,6 +3,7 @@ title: "In-field assays"
 date: '`r paste("Actualizado en", Sys.Date())`'
 format: pdf
 ---
+
 ```{r}
 source(here::here("setup.R"))
 library(lme4)
@@ -15,6 +16,7 @@ dat <- rio::import("data/field.csv") %>%
   mutate(fungicide=fct_relevel(fungicide, "Control"))
 str(dat)
 ```
+
 Data scheme
 
 ```{r}
@@ -41,13 +43,14 @@ mod <- glmer(diseased/leaves ~ fungicide * season + (1|tree),
 
 Goodness of fit
 
-```{r}
+```{r eval=FALSE}
 simulateResiduals(mod) %>% testResiduals()
 ```
 
 ```{r}
 car::Anova(mod)
 ```
+
 Means comparison test
 
 ```{r}
