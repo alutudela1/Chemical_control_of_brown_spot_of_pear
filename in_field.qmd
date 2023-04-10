@@ -45,7 +45,10 @@ Goodness of fit
 
 ```{r eval=FALSE}
 simulateResiduals(mod) %>% testResiduals()
+
 ```
+
+![](IN%20FIELD.eps)
 
 ```{r}
 car::Anova(mod)
