@@ -25,3 +25,5 @@ f <- function(x, y, z){
     between(z, pmin(x, y, na.rm = TRUE), pmax(x, y, na.rm = TRUE)) ~ "within"
   )
 }
+
+usethis::use_readme_rmd()
