@@ -1,7 +1,6 @@
 ---
 title: "In vitro experiments"
 date: '`r paste("Actualizado en", Sys.Date())`'
-format: pdf
 ---
 
 ```{r setup, include=FALSE}

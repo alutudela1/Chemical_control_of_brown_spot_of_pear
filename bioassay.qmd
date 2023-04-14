@@ -1,9 +1,7 @@
 ---
-title: "Bioassays in fruits"
+title: "Bioassays in fruit"
 date: '`r paste("Actualizado en", Sys.Date())`'
-format: pdf
 ---
-
 
 ## Preventive treatments
 
@@ -224,4 +222,3 @@ res_cura %>%
   geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
   geom_col(alpha=.2, width=.2)
 ```
-

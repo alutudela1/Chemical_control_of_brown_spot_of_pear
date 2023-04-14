@@ -1,7 +1,6 @@
 ---
 title: "In-field assays"
 date: '`r paste("Actualizado en", Sys.Date())`'
-format: pdf
 ---
 
 ```{r}
