@@ -146,6 +146,13 @@ mod_germ <- metadrm(germination_percent ~ dose_,
 summary(mod_germ)
 ```
 
+Estimates
+
+```{r, warning=FALSE}
+ec50s_g <- ED(mod_germ, respLev=c(50)) %>% as.data.frame()
+ec50s_g
+```
+
 
 ```{r}
 germ_comp <- EDcomp(mod_germ, 
