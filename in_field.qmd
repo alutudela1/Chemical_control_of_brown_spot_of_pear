@@ -48,8 +48,6 @@ simulateResiduals(mod) %>% testResiduals()
 
 ```
 
-![](IN%20FIELD.eps)
-
 ```{r}
 car::Anova(mod)
 ```
