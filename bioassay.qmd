@@ -225,39 +225,3 @@ res_cura %>%
   geom_col(alpha=.2, width=.2)
 ```
 
-### Disease incidence
-
-```{r}
-cura_inc <- cura %>% 
-  # filter(!fungicide=="control") %>% 
-  group_by(fungicide, repetition, replicate, fruit) %>% 
-  summarise(diseased = spots_per_fruit >0) %>% 
-  group_by(fungicide, repetition, replicate) %>% 
-  summarise(n= sum(!is.na(diseased)),
-            inc_prop=mean(diseased)) %>% 
-  data.frame
-```
-
-Model 
-
-```{r}
-mod_inc_cura <- glmer(inc_prop ~ fungicide +
-                   (1|repetition/replicate),
-                 weights=n,family=binomial, 
-                 data=cura_inc)
-```
-
-Goodness of fit
-
-```{r}
-simulateResiduals(mod_inc_cura) %>% testResiduals()
-```
-
-
-Means comparison test
-
-```{r}
-emm_inc_cura <- emmeans(mod_inc_cura, ~ fungicide, type="response") 
-res_inc_cura <- cld(emm_inc_cura, alpha=0.05, Letters=letters,  type="response")
-res_inc_cura
-```
