@@ -9,3 +9,4 @@ Brown spot of pear (BSP), a fungal disease of importance in Europe, has been rec
 ![BSP symptoms on D´Anjou leaf and fruit](images/Danjou%20sintomas%20en%20hoja%20y%20fruto.jpg){width="48"}
 
 ![Abate Fetel pear](images/Abate%20Fetel-sintoma%20inicial%20en%20fruto.jpg){width="48"}
+<imgage="https://https://github.com/juanchiem/Chemical_control_of_brown_spot_of_pear/images/danjou.jpg" alt="BSP symPtoms in D´Anjou" width="250"/>
