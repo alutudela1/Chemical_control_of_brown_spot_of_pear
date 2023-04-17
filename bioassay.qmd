@@ -62,8 +62,6 @@ fit_zipoisson_prev <- glmmTMB(spots_per_fruit~fungicide*day +
                            (1|repetition/replicate),
                ziformula = ~1, family = poisson,
              dat)
-# performance::check_overdispersion(fit_zipoisson)
-# simulateResiduals(fit_zipoisson) %>% testResiduals()
 ```
 
 ```{r}
@@ -99,47 +97,6 @@ res_prev %>%
 res_prev %>% 
   ggplot()+
   aes(x=day, y =response)+
-  geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
-  geom_col(alpha=.2, width=.2)+
-  facet_wrap("fungicide")
-```
-
-### Disease incidence
-
-```{r}
-dat_inc <- dat %>% 
-  filter(!fungicide=="control") %>% 
-  group_by(fungicide, repetition, day, replicate, fruit) %>% 
-  summarise(diseased = spots_per_fruit >0) %>% 
-  group_by(fungicide, repetition, day, replicate) %>% 
-  summarise(n= sum(!is.na(diseased)),
-            inc_prop=mean(diseased)) %>% 
-  data.frame
-```
-
-Model 
-
-```{r}
-mod_inc <- glmer(inc_prop ~ fungicide*day +
-                   (1|repetition/replicate),
-                 weights=n,family=binomial, 
-                 data=dat_inc)
-
-simulateResiduals(mod_inc) %>% testResiduals()
-```
-
-Means comparison test 
-
-```{r}
-emm_inc <- emmeans(mod_inc, ~ day|fungicide, type="response") 
-res_inc <- cld(emm_inc, alpha=0.05, Letters=letters,  type="response")
-res_inc
-```
-
-```{r}
-res_inc %>% 
-  ggplot()+
-  aes(x=day, y =prob)+
   geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
   geom_col(alpha=.2, width=.2)+
   facet_wrap("fungicide")
@@ -181,8 +138,6 @@ fit_zipoisson_cur <- glmmTMB(spots_per_fruit~fungicide +
                                (1|repetition/replicate),
                              ziformula = ~1, 
                              family = poisson,data = cura)
-# performance::check_overdispersion(fit_zipoisson)
-# simulateResiduals(fit_zipoisson) %>% testResiduals()
 ```
 
 ```{r}

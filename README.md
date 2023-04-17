@@ -3,12 +3,12 @@
 
 # Efficacy of fungicides against brown spot of pear in Argentina
 
-Authors:
+Authors:Marisa Andrea Aluminé Tudela\*, María Cecilia Lutz, Juan Pablo
+Edwards Molina, Gustavo Nestor Giménez, Susana Noemí Di Masi, Graciela
+Noemí Pose, Dolores Del Brío.
 
------
-
-<!-- badges: start -->
-<!-- badges: end -->
+\*Corresponding autor <tudela.alumine@inta.gob.ar> – ORCID:
+0000-0001-8298-8064
 
 **Abstract**
 
@@ -44,3 +44,6 @@ be download by:
 ``` r
 usethis::use_course("<https://github.com/juanchiem/Chemical_control_of_brown_spot_of_pear/archive/refs/heads/main.zip>")
 ```
+
+<!-- badges: start -->
+<!-- badges: end -->

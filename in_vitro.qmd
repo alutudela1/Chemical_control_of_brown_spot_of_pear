@@ -15,8 +15,6 @@ raw <- rio::import("data/mycelial_growth.csv", dec=",")
 dat <- raw %>% 
   mutate_at(vars(dose, colony_diameter), as.numeric) %>% 
   mutate_at(vars(fungicide, strain, experiment, plate), as.factor) %>% 
-  # mutate(dose_decimal = format(dose, scientific = FALSE) %>% str_squish()) %>% 
-  # mutate(dose = as.numeric(dose_decimal)) %>% 
   mutate(curve_id = interaction(fungicide:strain:experiment)) 
 ```
 
@@ -110,7 +108,7 @@ dat %>%
     geom_smooth(aes(group=curve_id), size=.3, linetype=2,  
               method = drm, 
               method.args = list(fct = L.3()), se = F) +
-  labs(title= "", x = "Dose (ppm)",  y = "Colony diameter (cm)") + 
+  labs(title= "", x = "Dose (ppm)",  y = "Colony diameter (cm)", col= "Fungicide") + 
   scale_x_log10() 
 ```
 
