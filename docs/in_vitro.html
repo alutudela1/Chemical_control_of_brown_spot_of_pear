@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.306">
+<meta name="generator" content="quarto-1.3.296">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-04-17">
+<meta name="dcterms.date" content="2023-04-21">
 
 <title>Efficacy of fungicides against brown spot of pear in Argentina - 1&nbsp; In vitro experiments</title>
 <style>
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 17, 2023</p>
+      <p class="date">April 21, 2023</p>
     </div>
   </div>
   
@@ -201,27 +201,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mycelial-growth" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="mycelial-growth"><span class="header-section-number">1.1</span> Mycelial growth</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"data/mycelial_growth.csv"</span>, <span class="at">dec=</span><span class="st">","</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/mycelial_growth.csv"</span>, <span class="at">dec=</span><span class="st">","</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(dose, colony_diameter), as.numeric) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(fungicide, strain, experiment, plate), as.factor) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">curve_id =</span> <span class="fu">interaction</span>(fungicide<span class="sc">:</span>strain<span class="sc">:</span>experiment)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Data scheme</p>
+<p>Data structure</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   756 obs. of  7 variables:
- $ fungicide      : Factor w/ 4 levels "Bellis","Merpan",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ strain         : Factor w/ 3 levels "S20","S23","S8": 2 2 2 1 1 1 3 3 3 2 ...
- $ experiment     : Factor w/ 3 levels "1","2","3": 1 1 1 1 1 1 1 1 1 1 ...
- $ dose           : num  0 0 0 0 0 0 0 0 0 100 ...
- $ plate          : Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
- $ colony_diameter: num  53 55 56 52 53 52 51 51 52 0 ...
- $ curve_id       : Factor w/ 36 levels "Bellis:S20:1",..: 4 4 4 1 1 1 7 7 7 4 ...</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> fungicide <span class="sc">+</span> strain <span class="sc">+</span> experiment <span class="sc">+</span> dose, dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> fungicide <span class="sc">+</span> strain <span class="sc">+</span> experiment <span class="sc">+</span> dose, dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            dose 0 0.01 0.1 0.5 1 10 50 100 500 1000
 fungicide strain experiment                                         
@@ -264,30 +253,32 @@ Ziram     S20    1               3    0   3   3 3  3  3   3   0    0
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># per fungicide / strain</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span>  </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="fu">c</span>(dose, colony_diameter)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mod =</span> <span class="fu">map</span>(data, <span class="sc">~</span>broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">drm</span>(colony_diameter<span class="sc">~</span>dose, <span class="at">fct =</span> <span class="fu">LL.3</span>(), <span class="at">data =</span> .))))<span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(mod))<span class="sc">%&gt;%</span> </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   756 obs. of  7 variables:
+ $ fungicide      : Factor w/ 4 levels "Bellis","Merpan",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ strain         : Factor w/ 3 levels "S20","S23","S8": 2 2 2 1 1 1 3 3 3 2 ...
+ $ experiment     : Factor w/ 3 levels "1","2","3": 1 1 1 1 1 1 1 1 1 1 ...
+ $ dose           : num  0 0 0 0 0 0 0 0 0 100 ...
+ $ plate          : Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
+ $ colony_diameter: num  53 55 56 52 53 52 51 51 52 0 ...
+ $ curve_id       : Factor w/ 36 levels "Bellis:S20:1",..: 4 4 4 1 1 1 7 7 7 4 ...</code></pre>
+</div>
+</div>
+<p>Dose-response curves fitting by meta-analysis approach</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verify drc_per_strain.R</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mod_mg <span class="ot">&lt;-</span> <span class="fu">metadrm</span>(colony_diameter <span class="sc">~</span> dose, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">data=</span>dat,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">fct=</span><span class="fu">LL.3</span>(),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">ind=</span>curve_id,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">cid2=</span>fungicide,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">struct=</span><span class="st">"UN"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(mod_mg, <span class="at">file=</span> <span class="st">"models/invitro_mg.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># per fungicide</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span>  </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="sc">-</span>fungicide)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mod =</span> <span class="fu">map</span>(data, <span class="sc">~</span>broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">drm</span>(colony_diameter<span class="sc">~</span>dose, <span class="at">fct =</span> <span class="fu">LL.3</span>(), <span class="at">data =</span> .))))<span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(mod)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Meta-analysis approach</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mod_mg <span class="ot">&lt;-</span> <span class="fu">metadrm</span>(colony_diameter <span class="sc">~</span> dose, </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data=</span>dat,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">fct=</span><span class="fu">LL.3</span>(),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">ind=</span>curve_id,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">cid2=</span>fungicide,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">struct=</span><span class="st">"UN"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_mg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"models/invitro_mg.rds"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_mg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Two-stage meta-analysis dose-response model
@@ -310,68 +301,81 @@ e:(Intercept)    0.9136   -0.4915         1
 
 
 Coefficients:
-            Estimate    Std.Err t value  Pr(&gt;|t|)    
-b:Bellis  5.7954e-01 1.8249e-02 31.7572 &lt; 2.2e-16 ***
-b:Merpan  3.6118e-01 1.8337e-02 19.6968 &lt; 2.2e-16 ***
-b:Timorex 3.4904e-01 3.2449e-02 10.7565 &lt; 2.2e-16 ***
-b:Ziram   3.9270e-01 2.0238e-02 19.4040 &lt; 2.2e-16 ***
-d:Bellis  5.1375e+01 9.8903e-01 51.9446 &lt; 2.2e-16 ***
-d:Merpan  5.2514e+01 1.0668e+00 49.2274 &lt; 2.2e-16 ***
-d:Timorex 4.9987e+01 1.3972e+00 35.7759 &lt; 2.2e-16 ***
-d:Ziram   5.3064e+01 1.1219e+00 47.3004 &lt; 2.2e-16 ***
-e:Bellis  2.9754e-02 2.7299e-03 10.8994 &lt; 2.2e-16 ***
-e:Merpan  2.4515e+01 1.6200e+00 15.1327 &lt; 2.2e-16 ***
-e:Timorex 1.1284e+02 2.2168e+01  5.0901 1.779e-06 ***
-e:Ziram   6.4556e+00 6.1620e-01 10.4764 &lt; 2.2e-16 ***
+             Estimate     Std.Err t value              Pr(&gt;|t|)    
+b:Bellis    0.5795367   0.0182490 31.7572 &lt; 0.00000000000000022 ***
+b:Merpan    0.3611793   0.0183369 19.6968 &lt; 0.00000000000000022 ***
+b:Timorex   0.3490411   0.0324495 10.7565 &lt; 0.00000000000000022 ***
+b:Ziram     0.3926960   0.0202379 19.4040 &lt; 0.00000000000000022 ***
+d:Bellis   51.3746461   0.9890286 51.9446 &lt; 0.00000000000000022 ***
+d:Merpan   52.5139150   1.0667613 49.2274 &lt; 0.00000000000000022 ***
+d:Timorex  49.9869522   1.3972223 35.7759 &lt; 0.00000000000000022 ***
+d:Ziram    53.0642566   1.1218557 47.3004 &lt; 0.00000000000000022 ***
+e:Bellis    0.0297542   0.0027299 10.8994 &lt; 0.00000000000000022 ***
+e:Merpan   24.5154698   1.6200305 15.1327 &lt; 0.00000000000000022 ***
+e:Timorex 112.8372474  22.1680049  5.0901           0.000001779 ***
+e:Ziram     6.4555590   0.6162007 10.4764 &lt; 0.00000000000000022 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Estimates</p>
+<p>EC50 Estimates</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ec50s <span class="ot">&lt;-</span> <span class="fu">ED</span>(mod_mg, <span class="at">respLev=</span><span class="fu">c</span>(<span class="dv">50</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ec50s <span class="ot">&lt;-</span> <span class="fu">ED</span>(mod_mg, <span class="at">respLev=</span><span class="fu">c</span>(<span class="dv">50</span>)) <span class="sc">%&gt;%</span> data.frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Estimated effective doses
 
-               Estimate Std. Error
-e:Bellis:50  2.9754e-02 2.7299e-03
-e:Merpan:50  2.4515e+01 1.6200e+00
-e:Timorex:50 1.1284e+02 2.2168e+01
-e:Ziram:50   6.4556e+00 6.1620e-01</code></pre>
+                Estimate  Std. Error
+e:Bellis:50    0.0297542   0.0027299
+e:Merpan:50   24.5154698   1.6200305
+e:Timorex:50 112.8372474  22.1680049
+e:Ziram:50     6.4555590   0.6162007</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># coef_mod_mg &lt;- summary(mod_mg) %&gt;% data.frame %&gt;% </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   rownames_to_column("param")  %&gt;% </span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   separate(param, c("param", "fungicide"))</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50s &lt;- coef_mod_mg %&gt;% filter(param=="e") </span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50s</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># coef_mod_mg &lt;- summary(mod_mg) %&gt;% data.frame %&gt;% </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   rownames_to_column("param")  %&gt;% </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   separate(param, c("param", "fungicide"))</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50s &lt;- coef_mod_mg %&gt;% filter(param=="e") </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50s</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Comparing effective dose levels for meta analysis</p>
+<p>Comparing fungicides EC50</p>
+<p>As we compare EC50 ratios between fungicides, if the confidence interval does not contain 1, fungicides differ among them:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ed_comp <span class="ot">&lt;-</span> <span class="fu">EDcomp</span>(mod_mg, </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">percVec=</span><span class="fu">c</span>(<span class="dv">50</span>), </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">percMat=</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)), </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">interval=</span><span class="st">"fieller"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"comp"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative_to_one =</span> <span class="fu">f</span>(Lower, Upper, <span class="dv">1</span>)) <span class="co"># %&gt;% </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ed_comp <span class="ot">&lt;-</span> <span class="fu">EDcomp</span>(mod_mg, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">percVec=</span><span class="fu">c</span>(<span class="dv">50</span>), </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">percMat=</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)), </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">interval=</span><span class="st">"fieller"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"comp"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative_to_one =</span> <span class="fu">f</span>(Lower, Upper, <span class="dv">1</span>)) <span class="co"># %&gt;% </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Estimated ratios of effect doses
 
-                       Estimate      Lower      Upper
-Bellis/Merpan:50/50  1.2137e-03 9.5935e-04 1.5105e-03
-Bellis/Timorex:50/50 2.6369e-04 1.7897e-04 4.4300e-04
-Bellis/Ziram:50/50   4.6091e-03 3.5352e-03 6.0262e-03
-Merpan/Timorex:50/50 2.1726e-01 1.5163e-01 3.6084e-01
-Merpan/Ziram:50/50   3.7976e+00 3.0366e+00 4.8414e+00
-Timorex/Ziram:50/50  1.7479e+01 1.0384e+01 2.5875e+01</code></pre>
+                        Estimate       Lower       Upper
+Bellis/Merpan:50/50   0.00121369  0.00095935  0.00151054
+Bellis/Timorex:50/50  0.00026369  0.00017897  0.00044300
+Bellis/Ziram:50/50    0.00460909  0.00353519  0.00602624
+Merpan/Timorex:50/50  0.21726398  0.15162515  0.36083619
+Merpan/Ziram:50/50    3.79757505  3.03655193  4.84141476
+Timorex/Ziram:50/50  17.47908235 10.38447082 25.87541262</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># as_huxtable() %&gt;% </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set_number_format(1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># as_huxtable() %&gt;% </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set_number_format(1)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ed_comp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+# Rowwise: 
+  comp                  Estimate     Lower     Upper relative_to_one
+  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;          
+1 Bellis/Merpan:50/50   0.00121   0.000959  0.00151  below          
+2 Bellis/Timorex:50/50  0.000264  0.000179  0.000443 below          
+3 Bellis/Ziram:50/50    0.00461   0.00354   0.00603  below          
+4 Merpan/Timorex:50/50  0.217     0.152     0.361    below          
+5 Merpan/Ziram:50/50    3.80      3.04      4.84     above          
+6 Timorex/Ziram:50/50  17.5      10.4      25.9      above          </code></pre>
 </div>
-<p>As we compare EC50 ratios between fungicides, if the confidence interval does not contain 1, fungicides differ among them:</p>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ed_comp <span class="sc">%&gt;%</span> </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
@@ -386,57 +390,36 @@ Timorex/Ziram:50/50  1.7479e+01 1.0384e+01 2.5875e+01</code></pre>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>dose<span class="fl">+0.0001</span>, <span class="at">y=</span>colony_diameter, <span class="at">col=</span>fungicide) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> drm, </span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.3</span>()), <span class="at">se =</span> F) <span class="sc">+</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group=</span>curve_id), <span class="at">size=</span>.<span class="dv">3</span>, <span class="at">linetype=</span><span class="dv">2</span>,  </span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> drm, </span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.3</span>()), <span class="at">se =</span> F) <span class="sc">+</span></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Dose (ppm)"</span>,  <span class="at">y =</span> <span class="st">"Colony diameter (cm)"</span>, <span class="at">col=</span> <span class="st">"Fungicide"</span>) <span class="sc">+</span> </span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="in_vitro_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="in_vitro_files/figure-html/unnamed-chunk-9-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">last_plot</span>(), <span class="at">file=</span><span class="st">"plots/mg_curves.jpg"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">scale=</span><span class="fl">1.5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="spore-germination" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="spore-germination"><span class="header-section-number">1.2</span> Spore germination</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>germi_raw <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"data/germination.csv"</span>, <span class="at">dec=</span><span class="st">","</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>germi_dat <span class="ot">&lt;-</span> germi_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(dose), as.numeric) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(fungicide, strain, repetition, replicate), as.factor) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">curve_id =</span> <span class="fu">interaction</span>(fungicide<span class="sc">:</span>strain<span class="sc">:</span>repetition)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dose_ =</span> dose<span class="fl">+0.0001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>germi_raw <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/germination.csv"</span>, <span class="at">dec=</span><span class="st">","</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>germi_dat <span class="ot">&lt;-</span> germi_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(dose), as.numeric) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(fungicide, strain, repetition, replicate), as.factor) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">curve_id =</span> <span class="fu">interaction</span>(fungicide<span class="sc">:</span>strain<span class="sc">:</span>repetition)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dose_ =</span> dose<span class="fl">+0.0001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Data scheme</p>
+<p>Data structure</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>germi_dat <span class="sc">%&gt;%</span> str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   468 obs. of  12 variables:
- $ fungicide             : Factor w/ 4 levels "Bellis","Merpan",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ strain                : Factor w/ 3 levels "S20","S23","S8": 2 2 2 1 1 1 3 3 3 2 ...
- $ repetition            : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
- $ replicate             : Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
- $ dose                  : num  100 100 100 100 100 100 100 100 100 50 ...
- $ germinated_conidia    : int  0 0 0 0 0 0 0 0 0 0 ...
- $ total_conida          : int  100 100 100 100 100 100 100 100 100 100 ...
- $ non_germinated_conidia: int  100 100 100 100 100 100 100 100 100 100 ...
- $ inhibition_perc       : int  100 100 100 100 100 100 100 100 100 100 ...
- $ germination_percent   : int  0 0 0 0 0 0 0 0 0 0 ...
- $ curve_id              : Factor w/ 24 levels "Bellis:S20:1",..: 3 3 3 1 1 1 5 5 5 3 ...
- $ dose_                 : num  100 100 100 100 100 ...</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="fu">complete.cases</span>(germination_percent)<span class="sc">~</span>fungicide<span class="sc">+</span>dose, <span class="at">data=</span>germi_dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>          dose  0 0.1  1 10 50 100 500 1000
-fungicide                                  
-Bellis         18  18 18 18 18  18   0    0
-Merpan         18  18 18 18  0  18  18   18
-Timorex        18  18 18 18  0  18  18   18
-Ziram          18  18 18 18 18  18   0    0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="fu">complete.cases</span>(germination_percent)<span class="sc">~</span>fungicide<span class="sc">+</span>dose<span class="sc">+</span>strain , <span class="at">data=</span>germi_dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="fu">complete.cases</span>(germination_percent)<span class="sc">~</span>fungicide<span class="sc">+</span>dose<span class="sc">+</span>strain , <span class="at">data=</span>germi_dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               strain S20 S23 S8
 fungicide dose                  
@@ -474,15 +457,37 @@ Ziram     0             6   6  6
           1000          0   0  0</code></pre>
 </div>
 </div>
-<p>Meta-analysis</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mod_germ <span class="ot">&lt;-</span> <span class="fu">metadrm</span>(germination_percent <span class="sc">~</span> dose_, </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data=</span>germi_dat,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">fct=</span><span class="fu">LL.3</span>(),</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">ind=</span>curve_id,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">cid2=</span>fungicide,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">struct=</span><span class="st">"UN"</span>)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_germ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(germi_dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   468 obs. of  12 variables:
+ $ fungicide             : Factor w/ 4 levels "Bellis","Merpan",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ strain                : Factor w/ 3 levels "S20","S23","S8": 2 2 2 1 1 1 3 3 3 2 ...
+ $ repetition            : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ replicate             : Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3 1 2 3 1 ...
+ $ dose                  : num  100 100 100 100 100 100 100 100 100 50 ...
+ $ germinated_conidia    : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ total_conida          : int  100 100 100 100 100 100 100 100 100 100 ...
+ $ non_germinated_conidia: int  100 100 100 100 100 100 100 100 100 100 ...
+ $ inhibition_perc       : int  100 100 100 100 100 100 100 100 100 100 ...
+ $ germination_percent   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ curve_id              : Factor w/ 24 levels "Bellis:S20:1",..: 3 3 3 1 1 1 5 5 5 3 ...
+ $ dose_                 : num  100 100 100 100 100 ...</code></pre>
+</div>
+</div>
+<p>Dose-response curves fitting by meta-analysis approach</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mod_germ <span class="ot">&lt;-</span> <span class="fu">metadrm</span>(germination_percent <span class="sc">~</span> dose_, </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data=</span>germi_dat,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">fct=</span><span class="fu">LL.3</span>(),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">ind=</span>curve_id,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">cid2=</span>fungicide,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">struct=</span><span class="st">"UN"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(mod_germ, <span class="at">file=</span> <span class="st">"models/invitro_germ.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"models/invitro_germ.rds"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_germ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Two-stage meta-analysis dose-response model
@@ -505,93 +510,84 @@ e:(Intercept)    1.0000    1.0000         1
 
 
 Coefficients:
-            Estimate    Std.Err  t value  Pr(&gt;|t|)    
-b:Bellis  1.0899e+00 8.5417e-02  12.7594 &lt; 2.2e-16 ***
-b:Merpan  1.3070e+00 5.6028e-02  23.3286 &lt; 2.2e-16 ***
-b:Timorex 1.0750e+00 1.2498e-01   8.6014 4.650e-12 ***
-b:Ziram   6.1460e-01 4.1545e-02  14.7935 &lt; 2.2e-16 ***
-d:Bellis  9.9899e+01 2.3603e-01 423.2484 &lt; 2.2e-16 ***
-d:Merpan  9.7988e+01 5.3055e-01 184.6913 &lt; 2.2e-16 ***
-d:Timorex 9.7660e+01 1.7236e+00  56.6592 &lt; 2.2e-16 ***
-d:Ziram   9.9054e+01 2.0387e+00  48.5862 &lt; 2.2e-16 ***
-e:Bellis  2.3170e-02 5.1014e-03   4.5419 2.744e-05 ***
-e:Merpan  1.1356e+00 2.4159e-02  47.0036 &lt; 2.2e-16 ***
-e:Timorex 2.8903e+02 3.4065e+01   8.4846 7.338e-12 ***
-e:Ziram   1.5577e-01 2.7043e-02   5.7600 3.080e-07 ***
+             Estimate     Std.Err  t value              Pr(&gt;|t|)    
+b:Bellis    1.0898626   0.0854167  12.7594 &lt; 0.00000000000000022 ***
+b:Merpan    1.3070417   0.0560275  23.3286 &lt; 0.00000000000000022 ***
+b:Timorex   1.0749724   0.1249763   8.6014     0.000000000004650 ***
+b:Ziram     0.6145974   0.0415450  14.7935 &lt; 0.00000000000000022 ***
+d:Bellis   99.8992681   0.2360299 423.2484 &lt; 0.00000000000000022 ***
+d:Merpan   97.9883814   0.5305522 184.6913 &lt; 0.00000000000000022 ***
+d:Timorex  97.6597656   1.7236343  56.6592 &lt; 0.00000000000000022 ***
+d:Ziram    99.0543330   2.0387322  48.5862 &lt; 0.00000000000000022 ***
+e:Bellis    0.0231700   0.0051014   4.5419     0.000027438625743 ***
+e:Merpan    1.1355696   0.0241592  47.0036 &lt; 0.00000000000000022 ***
+e:Timorex 289.0283519  34.0651922   8.4846     0.000000000007338 ***
+e:Ziram     0.1557700   0.0270433   5.7600     0.000000308016186 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Estimates</p>
+<p>EC50´s Estimates</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ec50s_g <span class="ot">&lt;-</span> <span class="fu">ED</span>(mod_germ, <span class="at">respLev=</span><span class="fu">c</span>(<span class="dv">50</span>)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Estimated effective doses
 
-               Estimate Std. Error
-e:Bellis:50  2.3170e-02 5.1014e-03
-e:Merpan:50  1.1356e+00 2.4159e-02
-e:Timorex:50 2.8903e+02 3.4065e+01
-e:Ziram:50   1.5577e-01 2.7043e-02</code></pre>
+                Estimate  Std. Error
+e:Bellis:50    0.0231700   0.0051014
+e:Merpan:50    1.1355696   0.0241592
+e:Timorex:50 289.0283519  34.0651922
+e:Ziram:50     0.1557700   0.0270433</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ec50s_g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table id="tab:unnamed-chunk-13" class="huxtable table table-sm table-striped small" data-quarto-postprocess="true">
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt; padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Estimate</td>
-<td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Std. Error</td>
-</tr>
-<tr class="even">
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0232</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">0.0051</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">1.14&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.0242</td>
-</tr>
-<tr class="even">
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">289&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt; padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;">34.1&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.156&nbsp;</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt; padding: 6pt 6pt 6pt 6pt; font-weight: normal;">0.027&nbsp;</td>
-</tr>
-</tbody>
-</table>
-
-
+<div class="cell-output cell-output-stdout">
+<pre><code>                 Estimate   Std. Error
+e:Bellis:50    0.02317004  0.005101351
+e:Merpan:50    1.13556964  0.024159210
+e:Timorex:50 289.02835194 34.065192159
+e:Ziram:50     0.15577000  0.027043327</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>germ_comp <span class="ot">&lt;-</span> <span class="fu">EDcomp</span>(mod_germ, </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">percVec=</span><span class="fu">c</span>(<span class="dv">50</span>), </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">percMat=</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)), </span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">interval=</span><span class="st">"fieller"</span>)  <span class="sc">%&gt;%</span> </span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"comp"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative_to_one =</span> <span class="fu">f</span>(Lower, Upper, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>germ_comp <span class="ot">&lt;-</span> <span class="fu">EDcomp</span>(mod_germ, </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">percVec=</span><span class="fu">c</span>(<span class="dv">50</span>), </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">percMat=</span><span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)), </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">interval=</span><span class="st">"fieller"</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">"comp"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative_to_one =</span> <span class="fu">f</span>(Lower, Upper, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Estimated ratios of effect doses
 
-                       Estimate      Lower      Upper
-Bellis/Merpan:50/50  2.0404e-02 1.1405e-02 2.9477e-02
-Bellis/Timorex:50/50 8.0165e-05 4.3407e-05 1.2636e-04
-Bellis/Ziram:50/50   1.4875e-01 7.7874e-02 2.6041e-01
-Merpan/Timorex:50/50 3.9289e-03 3.1644e-03 5.1559e-03
-Merpan/Ziram:50/50   7.2900e+00 5.3920e+00 1.1188e+01
-Timorex/Ziram:50/50  1.8555e+03 1.2413e+03 2.9785e+03</code></pre>
+                           Estimate          Lower          Upper
+Bellis/Merpan:50/50     0.020403889    0.011404798    0.029477018
+Bellis/Timorex:50/50    0.000080165    0.000043407    0.000126360
+Bellis/Ziram:50/50      0.148745178    0.077874246    0.260413050
+Merpan/Timorex:50/50    0.003928921    0.003164387    0.005155910
+Merpan/Ziram:50/50      7.290040642    5.392013944   11.187536191
+Timorex/Ziram:50/50  1855.481470394 1241.326870777 2978.546457196</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># germ_comp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>germ_comp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+# Rowwise: 
+  comp                     Estimate        Lower       Upper relative_to_one
+  &lt;chr&gt;                       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;          
+1 Bellis/Merpan:50/50     0.0204       0.0114       0.0295   below          
+2 Bellis/Timorex:50/50    0.0000802    0.0000434    0.000126 below          
+3 Bellis/Ziram:50/50      0.149        0.0779       0.260    below          
+4 Merpan/Timorex:50/50    0.00393      0.00316      0.00516  below          
+5 Merpan/Ziram:50/50      7.29         5.39        11.2      above          
+6 Timorex/Ziram:50/50  1855.        1241.        2979.       above          </code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>coef_mod_germ <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod_germ) <span class="sc">%&gt;%</span> data.frame <span class="sc">%&gt;%</span> </span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">"param"</span>)  <span class="sc">%&gt;%</span> </span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(param, <span class="fu">c</span>(<span class="st">"param"</span>, <span class="st">"fungicide"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>coef_mod_germ <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod_germ) <span class="sc">%&gt;%</span> data.frame <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">"param"</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(param, <span class="fu">c</span>(<span class="st">"param"</span>, <span class="st">"fungicide"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Two-stage meta-analysis dose-response model
@@ -614,49 +610,53 @@ e:(Intercept)    1.0000    1.0000         1
 
 
 Coefficients:
-            Estimate    Std.Err  t value  Pr(&gt;|t|)    
-b:Bellis  1.0899e+00 8.5417e-02  12.7594 &lt; 2.2e-16 ***
-b:Merpan  1.3070e+00 5.6028e-02  23.3286 &lt; 2.2e-16 ***
-b:Timorex 1.0750e+00 1.2498e-01   8.6014 4.650e-12 ***
-b:Ziram   6.1460e-01 4.1545e-02  14.7935 &lt; 2.2e-16 ***
-d:Bellis  9.9899e+01 2.3603e-01 423.2484 &lt; 2.2e-16 ***
-d:Merpan  9.7988e+01 5.3055e-01 184.6913 &lt; 2.2e-16 ***
-d:Timorex 9.7660e+01 1.7236e+00  56.6592 &lt; 2.2e-16 ***
-d:Ziram   9.9054e+01 2.0387e+00  48.5862 &lt; 2.2e-16 ***
-e:Bellis  2.3170e-02 5.1014e-03   4.5419 2.744e-05 ***
-e:Merpan  1.1356e+00 2.4159e-02  47.0036 &lt; 2.2e-16 ***
-e:Timorex 2.8903e+02 3.4065e+01   8.4846 7.338e-12 ***
-e:Ziram   1.5577e-01 2.7043e-02   5.7600 3.080e-07 ***
+             Estimate     Std.Err  t value              Pr(&gt;|t|)    
+b:Bellis    1.0898626   0.0854167  12.7594 &lt; 0.00000000000000022 ***
+b:Merpan    1.3070417   0.0560275  23.3286 &lt; 0.00000000000000022 ***
+b:Timorex   1.0749724   0.1249763   8.6014     0.000000000004650 ***
+b:Ziram     0.6145974   0.0415450  14.7935 &lt; 0.00000000000000022 ***
+d:Bellis   99.8992681   0.2360299 423.2484 &lt; 0.00000000000000022 ***
+d:Merpan   97.9883814   0.5305522 184.6913 &lt; 0.00000000000000022 ***
+d:Timorex  97.6597656   1.7236343  56.6592 &lt; 0.00000000000000022 ***
+d:Ziram    99.0543330   2.0387322  48.5862 &lt; 0.00000000000000022 ***
+e:Bellis    0.0231700   0.0051014   4.5419     0.000027438625743 ***
+e:Merpan    1.1355696   0.0241592  47.0036 &lt; 0.00000000000000022 ***
+e:Timorex 289.0283519  34.0651922   8.4846     0.000000000007338 ***
+e:Ziram     0.1557700   0.0270433   5.7600     0.000000308016186 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50_germ &lt;- coef_mod_germ %&gt;% filter(param=="e") </span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50_germ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50_germ &lt;- coef_mod_germ %&gt;% filter(param=="e") </span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ec50_germ</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>germ_comp <span class="sc">%&gt;%</span> </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>comp, <span class="at">y=</span>Estimate) <span class="sc">+</span> </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Lower, <span class="at">ymax =</span> Upper, <span class="at">col=</span>relative_to_one))<span class="sc">+</span>     </span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col=</span><span class="st">"Relative to 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>germ_comp <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>comp, <span class="at">y=</span>Estimate) <span class="sc">+</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Lower, <span class="at">ymax =</span> Upper, <span class="at">col=</span>relative_to_one))<span class="sc">+</span>     </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col=</span><span class="st">"Relative to 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>germi_dat <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>dose<span class="fl">+0.0001</span>, <span class="at">y=</span>germination_percent, <span class="at">col=</span>fungicide) <span class="sc">+</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> drm, </span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.3</span>()), <span class="at">se =</span> F) <span class="sc">+</span>  </span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group=</span>curve_id), <span class="at">size=</span>.<span class="dv">3</span>, <span class="at">linetype=</span><span class="dv">2</span>,  </span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> drm, </span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.3</span>()), <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Dose (ppm)"</span>,  <span class="at">y =</span> <span class="st">"Germination (%)"</span>, <span class="at">col=</span> <span class="st">"Fungicide"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>germi_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>dose<span class="fl">+0.0001</span>, <span class="at">y=</span>germination_percent, <span class="at">col=</span>fungicide) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> drm, </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.3</span>()), <span class="at">se =</span> F) <span class="sc">+</span>  </span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group=</span>curve_id), <span class="at">size=</span>.<span class="dv">3</span>, <span class="at">linetype=</span><span class="dv">2</span>,  </span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> drm, </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.3</span>()), <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Dose (ppm)"</span>,  <span class="at">y =</span> <span class="st">"Germination (%)"</span>, <span class="at">col=</span> <span class="st">"Fungicide"</span>)  <span class="sc">+</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="in_vitro_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="in_vitro_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">last_plot</span>(), <span class="at">file=</span><span class="st">"plots/germi_curves.jpg"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">scale=</span><span class="fl">1.5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

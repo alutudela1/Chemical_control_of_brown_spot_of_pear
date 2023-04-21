@@ -1,14 +1,17 @@
+Efficacy of fungicides against brown spot of pear in Argentina
+================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
 
-# Efficacy of fungicides against brown spot of pear in Argentina
+Authors: Marisa Andrea Aluminé Tudela\*, María Cecilia Lutz, Gustavo
+Nestor Giménez, Susana Noemí Di Masi, Graciela Noemí Pose, Dolores Del
+Brío, Juan Pablo Edwards Molina
 
-Authors:Marisa Andrea Aluminé Tudela\*, María Cecilia Lutz, Juan Pablo
-Edwards Molina, Gustavo Nestor Giménez, Susana Noemí Di Masi, Graciela
-Noemí Pose, Dolores Del Brío.
+\*Corresponding autor (<tudela.alumine@inta.gob.ar>)
+ORCID:0000-0001-8298-8064
 
-\*Corresponding autor <tudela.alumine@inta.gob.ar> – ORCID:
-0000-0001-8298-8064
+<!-- badges: end -->
 
 **Abstract**
 
@@ -34,16 +37,21 @@ Bioassay results showed that preventive measures using Bellis®, Ziram®,
 or Merpan® were effective in reducing disease severity and suggested
 that BSP could be controlled by adequate selection of treatment time.
 
-<img src="images/abate.jpg" style="width:40.0%"
-alt="Abate Fetel pear" />
-<img src="images/danjou.jpg" style="width:40.0%" alt="D´Anjou pear" />
+<div class="figure" style="text-align: center">
 
-For reproducibility purposes of the analysis, this github repository can
-be download by:
+<img src="images/abate_border.png" alt="Abate (left) and Danjou (right) pear cultivars with symptoms of brown spot caused by *Stemphylium vesicarium*" width="50%" height="20%" /><img src="images/danjou_border.png" alt="Abate (left) and Danjou (right) pear cultivars with symptoms of brown spot caused by *Stemphylium vesicarium*" width="50%" height="20%" />
+<p class="caption">
+Abate (left) and Danjou (right) pear cultivars with symptoms of brown
+spot caused by *Stemphylium vesicarium*
+</p>
+
+</div>
+
+------------------------------------------------------------------------
+
+- *For reproducibility purposes of the data analysis, this github
+  repository can be downloaded by:*
 
 ``` r
-usethis::use_course("<https://github.com/juanchiem/Chemical_control_of_brown_spot_of_pear/archive/refs/heads/main.zip>")
+usethis::use_course("https://github.com/juanchiem/Chemical_control_of_brown_spot_of_pear/archive/refs/heads/main.zip")
 ```
-
-<!-- badges: start -->
-<!-- badges: end -->
