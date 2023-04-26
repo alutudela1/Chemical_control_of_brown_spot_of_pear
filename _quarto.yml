@@ -4,7 +4,6 @@ project:
   
 book:
   title: "Efficacy of fungicides against brown spot of pear in Argentina"
-  author: "Tudela et al."
   chapters:
     - index.qmd
     - in_vitro.qmd
@@ -14,5 +13,5 @@ book:
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreport
+#  pdf:
+#    documentclass: scrreport
