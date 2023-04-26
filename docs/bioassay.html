@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-04-21">
+<meta name="dcterms.date" content="2023-04-26">
 
 <title>Efficacy of fungicides against brown spot of pear in Argentina - 2&nbsp; Bioassays in fruit</title>
 <style>
@@ -136,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Abstract</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./in_field.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-field assays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Field experiments</span></span></a>
   </div>
 </li>
     </ul>
@@ -167,14 +167,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preventive-treatments" id="toc-preventive-treatments" class="nav-link active" data-scroll-target="#preventive-treatments"><span class="header-section-number">2.1</span> Preventive treatments</a>
-  <ul class="collapse">
-  <li><a href="#disease-severity" id="toc-disease-severity" class="nav-link" data-scroll-target="#disease-severity"><span class="header-section-number">2.1.1</span> Disease severity</a></li>
-  </ul></li>
-  <li><a href="#curative-treatments" id="toc-curative-treatments" class="nav-link" data-scroll-target="#curative-treatments"><span class="header-section-number">2.2</span> Curative treatments</a>
-  <ul class="collapse">
-  <li><a href="#disease-severity-spots-per-fruit" id="toc-disease-severity-spots-per-fruit" class="nav-link" data-scroll-target="#disease-severity-spots-per-fruit"><span class="header-section-number">2.2.1</span> Disease severity (spots per fruit)</a></li>
-  </ul></li>
+  <li><a href="#preventive-treatments" id="toc-preventive-treatments" class="nav-link active" data-scroll-target="#preventive-treatments"><span class="header-section-number">2.1</span> Preventive treatments</a></li>
+  <li><a href="#curative-treatments" id="toc-curative-treatments" class="nav-link" data-scroll-target="#curative-treatments"><span class="header-section-number">2.2</span> Curative treatments</a></li>
   </ul>
 </nav>
     </div>
@@ -194,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 21, 2023</p>
+      <p class="date">April 26, 2023</p>
     </div>
   </div>
   
@@ -204,9 +198,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="preventive-treatments" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="preventive-treatments"><span class="header-section-number">2.1</span> Preventive treatments</h2>
-<p>Disease severity analysis (spots per fruit)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"setup.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -226,21 +217,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(fungicide, repetition, day, replicate, fruit), as.factor) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fungicide=</span><span class="fu">fct_relevel</span>(fungicide, <span class="st">"control"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Data structure</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   600 obs. of  6 variables:
- $ fungicide      : Factor w/ 5 levels "control","Bellis",..: 2 2 2 2 2 2 2 2 2 2 ...
- $ repetition     : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
- $ day            : Factor w/ 3 levels "1","7","15": 1 1 1 1 1 1 1 1 1 1 ...
- $ replicate      : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 2 2 2 2 2 ...
- $ fruit          : Factor w/ 5 levels "1","2","3","4",..: 1 2 3 4 5 1 2 3 4 5 ...
- $ spots_per_fruit: int  1 0 0 0 0 0 0 0 0 0 ...</code></pre>
-</div>
-</div>
-<p>Data scheme</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> fungicide <span class="sc">+</span> day <span class="sc">+</span> repetition <span class="sc">+</span> replicate, dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> fungicide <span class="sc">+</span> day <span class="sc">+</span> repetition <span class="sc">+</span> replicate, dat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                         replicate 1 2 3 4
 fungicide day repetition                  
@@ -276,16 +255,30 @@ Ziram     1   1                    5 5 5 5
               2                    5 5 5 5</code></pre>
 </div>
 </div>
-<section id="disease-severity" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="disease-severity"><span class="header-section-number">2.1.1</span> Disease severity</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   600 obs. of  6 variables:
+ $ fungicide      : Factor w/ 5 levels "control","Bellis",..: 2 2 2 2 2 2 2 2 2 2 ...
+ $ repetition     : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ day            : Factor w/ 3 levels "1","7","15": 1 1 1 1 1 1 1 1 1 1 ...
+ $ replicate      : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 2 2 2 2 2 ...
+ $ fruit          : Factor w/ 5 levels "1","2","3","4",..: 1 2 3 4 5 1 2 3 4 5 ...
+ $ spots_per_fruit: int  1 0 0 0 0 0 0 0 0 0 ...</code></pre>
+</div>
+</div>
+<section id="preventive-treatments" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="preventive-treatments"><span class="header-section-number">2.1</span> Preventive treatments</h2>
+<p>Disease severity (spots per fruit)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y=</span>spots_per_fruit) <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span>.<span class="dv">2</span>, <span class="at">col=</span><span class="dv">2</span>, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Treatment"</span>, <span class="at">y=</span><span class="st">"Severity (spots per fruit)"</span>) <span class="sc">+</span> </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(repetition<span class="sc">~</span>fungicide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span>.<span class="dv">2</span>, <span class="at">col=</span><span class="dv">2</span>, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width=</span>.<span class="dv">5</span>, <span class="at">alpha=</span>.<span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Fungicide timing (days after inoculation)"</span>, </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Severity (spots per fruit)"</span>) <span class="sc">+</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(repetition<span class="sc">~</span>fungicide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="bioassay_files/figure-html/unnamed-chunk-5-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
 </div>
@@ -320,89 +313,15 @@ fit_zinbinom_prev  19 3486.965
 fit_zinbinom1_prev 19 3419.425
 fit_twediee_prev   20 3405.244</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#               df      AIC</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zipoisson 18 3895.200</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zinbinom  19 3489.228</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zinbinom1 19 3418.201</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_twediee   20 3405.606</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Goodness of fit</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">simulateResiduals</span>(fit_twediee_prev) <span class="sc">%&gt;%</span> <span class="fu">testResiduals</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="bioassay_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$uniformity
-
-    Asymptotic one-sample Kolmogorov-Smirnov test
-
-data:  simulationOutput$scaledResiduals
-D = 0.021, p-value = 0.954
-alternative hypothesis: two-sided
-
-
-$dispersion
-
-    DHARMa nonparametric dispersion test via sd of residuals fitted vs.
-    simulated
-
-data:  simulationOutput
-dispersion = 0.76533, p-value = 0.064
-alternative hypothesis: two.sided
-
-
-$outliers
-
-    DHARMa outlier test based on exact binomial test with approximate
-    expectations
-
-data:  simulationOutput
-outliers at both margin(s) = 10, observations = 600, p-value = 0.03228
-alternative hypothesis: true probability of success is not equal to 0.007968127
-95 percent confidence interval:
- 0.008020507 0.030436459
-sample estimates:
-frequency of outliers (expected: 0.00796812749003984 ) 
-                                            0.01666667 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$uniformity
-
-    Asymptotic one-sample Kolmogorov-Smirnov test
-
-data:  simulationOutput$scaledResiduals
-D = 0.021, p-value = 0.954
-alternative hypothesis: two-sided
-
-
-$dispersion
-
-    DHARMa nonparametric dispersion test via sd of residuals fitted vs.
-    simulated
-
-data:  simulationOutput
-dispersion = 0.76533, p-value = 0.064
-alternative hypothesis: two.sided
-
-
-$outliers
-
-    DHARMa outlier test based on exact binomial test with approximate
-    expectations
-
-data:  simulationOutput
-outliers at both margin(s) = 10, observations = 600, p-value = 0.03228
-alternative hypothesis: true probability of success is not equal to 0.007968127
-95 percent confidence interval:
- 0.008020507 0.030436459
-sample estimates:
-frequency of outliers (expected: 0.00796812749003984 ) 
-                                            0.01666667 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">testOverdispersion</span>(fit_twediee_prev)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>DHARMa<span class="sc">::</span><span class="fu">testSimulatedResiduals</span>(fit_twediee_prev)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># simulateResiduals(fit_twediee_prev) %&gt;% testResiduals()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fit_twediee_prev)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fit_twediee_prev)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Deviance Table (Type II Wald chisquare tests)
 
@@ -415,12 +334,12 @@ fungicide:day  327.88  8 &lt; 0.00000000000000022 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Means comparison test</p>
+<p>Treatment means comparison</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>emm_prev <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fit_twediee_prev, <span class="sc">~</span> fungicide<span class="sc">|</span>day, <span class="at">type=</span><span class="st">"response"</span>) </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>res_prev <span class="ot">&lt;-</span> <span class="fu">cld</span>(emm_prev, <span class="at">alpha=</span><span class="fl">0.05</span>, <span class="at">Letters=</span>letters,  <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>res_prev <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="st">`</span><span class="at">%Control</span><span class="st">`</span><span class="ot">=</span><span class="fu">abs</span>((response<span class="sc">/</span><span class="fu">filter</span>(.,fungicide<span class="sc">==</span><span class="st">"control"</span>)<span class="sc">%&gt;%</span> <span class="fu">pull</span>(response)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>emm_prev <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fit_twediee_prev, <span class="sc">~</span> fungicide<span class="sc">|</span>day, <span class="at">type=</span><span class="st">"response"</span>) </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>res_prev <span class="ot">&lt;-</span> <span class="fu">cld</span>(emm_prev, <span class="at">alpha=</span><span class="fl">0.05</span>, <span class="at">Letters=</span>letters,  <span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>res_prev <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="st">`</span><span class="at">%Control</span><span class="st">`</span><span class="ot">=</span><span class="fu">abs</span>((response<span class="sc">/</span><span class="fu">filter</span>(.,fungicide<span class="sc">==</span><span class="st">"control"</span>)<span class="sc">%&gt;%</span> <span class="fu">pull</span>(response)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   fungicide day   response         SE  df   asymp.LCL  asymp.UCL .group
 2     Bellis   1  0.1266087 0.06435246 Inf  0.04675374  0.3428553   a   
@@ -455,37 +374,29 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 14 24.291793
 11  0.000000</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>res_prev <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y =</span>response)<span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>asymp.LCL , <span class="at">ymax=</span>asymp.UCL))<span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">width=</span>.<span class="dv">2</span>)<span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">"fungicide"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>res_prev <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>day, <span class="at">y =</span>response)<span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>asymp.LCL , <span class="at">ymax=</span>asymp.UCL))<span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">width=</span>.<span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">"fungicide"</span>)<span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Fungicide timing (days before inoculation)"</span>, </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">y=</span><span class="st">"Spots per fruit (counts)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="bioassay_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-</section>
 <section id="curative-treatments" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="curative-treatments"><span class="header-section-number">2.2</span> Curative treatments</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cura <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"data/curative.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate_at</span>(<span class="fu">vars</span>(fungicide, repetition, replicate, fruit), as.factor) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fungicide=</span><span class="fu">fct_relevel</span>(fungicide, <span class="st">"Control"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cura <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"data/curative.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate_at</span>(<span class="fu">vars</span>(fungicide, repetition, replicate, fruit), as.factor) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fungicide=</span><span class="fu">fct_relevel</span>(fungicide, <span class="st">"Control"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Data scheme</p>
+<p>Data structure</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cura <span class="sc">%&gt;%</span> str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   200 obs. of  5 variables:
- $ fungicide      : Factor w/ 5 levels "Control","Bellis",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ repetition     : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
- $ replicate      : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 2 2 2 2 2 ...
- $ fruit          : Factor w/ 5 levels "1","2","3","4",..: 1 2 3 4 5 1 2 3 4 5 ...
- $ spots_per_fruit: int  33 32 40 22 16 16 6 14 41 30 ...</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> fungicide <span class="sc">+</span> repetition <span class="sc">+</span> replicate, cura))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(<span class="fu">xtabs</span>(<span class="sc">~</span> fungicide <span class="sc">+</span> repetition <span class="sc">+</span> replicate, cura))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     replicate 1 2 3 4
 fungicide repetition                  
@@ -501,34 +412,43 @@ Ziram     1                    5 5 5 5
           2                    5 5 5 5</code></pre>
 </div>
 </div>
-<section id="disease-severity-spots-per-fruit" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="disease-severity-spots-per-fruit"><span class="header-section-number">2.2.1</span> Disease severity (spots per fruit)</h3>
-<p><strong>Box plot: severity per treatment and repetition (1 and 2)</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cura <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>fungicide, <span class="at">y=</span>spots_per_fruit) <span class="sc">+</span> </span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span>.<span class="dv">2</span>, <span class="at">col=</span><span class="dv">2</span>, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Treatment"</span>, <span class="at">y=</span><span class="st">"Severity (spots per fruit)"</span>) <span class="sc">+</span> </span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">"repetition"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cura <span class="sc">%&gt;%</span> str</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   200 obs. of  5 variables:
+ $ fungicide      : Factor w/ 5 levels "Control","Bellis",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ repetition     : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+ $ replicate      : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 2 2 2 2 2 ...
+ $ fruit          : Factor w/ 5 levels "1","2","3","4",..: 1 2 3 4 5 1 2 3 4 5 ...
+ $ spots_per_fruit: int  33 32 40 22 16 16 6 14 41 30 ...</code></pre>
+</div>
+</div>
+<p>Disease severity (spots per fruit)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cura <span class="sc">%&gt;%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>fungicide, <span class="at">y=</span>spots_per_fruit) <span class="sc">+</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width=</span>.<span class="dv">2</span>, <span class="at">col=</span><span class="dv">2</span>, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span> </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Treatment"</span>, <span class="at">y=</span><span class="st">"Severity (spots per fruit)"</span>) <span class="sc">+</span> </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="st">"repetition"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="bioassay_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="bioassay_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Model fitting</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://glmmtmb.github.io/glmmTMB/articles/glmmTMB.pdf</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fit_zipoisson_cur <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(spots_per_fruit<span class="sc">~</span>fungicide <span class="sc">+</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                               (<span class="dv">1</span><span class="sc">|</span>repetition<span class="sc">/</span>replicate),</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">ziformula =</span> <span class="sc">~</span><span class="dv">1</span>, </span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> poisson,<span class="at">data =</span> cura)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://glmmtmb.github.io/glmmTMB/articles/glmmTMB.pdf</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fit_zipoisson_cur <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(spots_per_fruit<span class="sc">~</span>fungicide <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                               (<span class="dv">1</span><span class="sc">|</span>repetition<span class="sc">/</span>replicate),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">ziformula =</span> <span class="sc">~</span><span class="dv">1</span>, </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">family =</span> poisson,<span class="at">data =</span> cura)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fit_zinbinom_cur <span class="ot">&lt;-</span> <span class="fu">update</span>(fit_zipoisson_cur,<span class="at">family=</span>nbinom2)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fit_zinbinom1_cur <span class="ot">&lt;-</span> <span class="fu">update</span>(fit_zipoisson_cur,<span class="at">family=</span>nbinom1)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>fit_twediee_cur <span class="ot">&lt;-</span> <span class="fu">update</span>(fit_zipoisson_cur,<span class="at">family=</span>tweedie)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(fit_zipoisson_cur,fit_zinbinom_cur,fit_zinbinom1_cur, fit_twediee_cur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fit_zinbinom_cur <span class="ot">&lt;-</span> <span class="fu">update</span>(fit_zipoisson_cur,<span class="at">family=</span>nbinom2)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>fit_zinbinom1_cur <span class="ot">&lt;-</span> <span class="fu">update</span>(fit_zipoisson_cur,<span class="at">family=</span>nbinom1)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>fit_twediee_cur <span class="ot">&lt;-</span> <span class="fu">update</span>(fit_zipoisson_cur,<span class="at">family=</span>tweedie)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(fit_zipoisson_cur,fit_zinbinom_cur,fit_zinbinom1_cur, fit_twediee_cur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  df      AIC
 fit_zipoisson_cur  8 1264.879
@@ -536,89 +456,18 @@ fit_zinbinom_cur   9 1176.775
 fit_zinbinom1_cur  9 1184.694
 fit_twediee_cur   10 1179.372</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#               df      AIC</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zipoisson  8 1270.421</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zinbinom   9 1176.582</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zinbinom1  9 1182.421</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_twediee   10 1180.572</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#               df      AIC</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zipoisson  8 1270.421</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zinbinom   9 1176.582</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_zinbinom1  9 1182.421</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fit_twediee   10 1180.572</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Goodness of fit</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">simulateResiduals</span>(fit_twediee_cur) <span class="sc">%&gt;%</span> <span class="fu">testResiduals</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="bioassay_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$uniformity
-
-    Asymptotic one-sample Kolmogorov-Smirnov test
-
-data:  simulationOutput$scaledResiduals
-D = 0.041, p-value = 0.8898
-alternative hypothesis: two-sided
-
-
-$dispersion
-
-    DHARMa nonparametric dispersion test via sd of residuals fitted vs.
-    simulated
-
-data:  simulationOutput
-dispersion = 0.73874, p-value = 0.16
-alternative hypothesis: two.sided
-
-
-$outliers
-
-    DHARMa outlier test based on exact binomial test with approximate
-    expectations
-
-data:  simulationOutput
-outliers at both margin(s) = 2, observations = 200, p-value = 0.6757
-alternative hypothesis: true probability of success is not equal to 0.007968127
-95 percent confidence interval:
- 0.001213349 0.035654668
-sample estimates:
-frequency of outliers (expected: 0.00796812749003984 ) 
-                                                  0.01 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$uniformity
-
-    Asymptotic one-sample Kolmogorov-Smirnov test
-
-data:  simulationOutput$scaledResiduals
-D = 0.041, p-value = 0.8898
-alternative hypothesis: two-sided
-
-
-$dispersion
-
-    DHARMa nonparametric dispersion test via sd of residuals fitted vs.
-    simulated
-
-data:  simulationOutput
-dispersion = 0.73874, p-value = 0.16
-alternative hypothesis: two.sided
-
-
-$outliers
-
-    DHARMa outlier test based on exact binomial test with approximate
-    expectations
-
-data:  simulationOutput
-outliers at both margin(s) = 2, observations = 200, p-value = 0.6757
-alternative hypothesis: true probability of success is not equal to 0.007968127
-95 percent confidence interval:
- 0.001213349 0.035654668
-sample estimates:
-frequency of outliers (expected: 0.00796812749003984 ) 
-                                                  0.01 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">simulateResiduals</span>(fit_twediee_cur) <span class="sc">%&gt;%</span> <span class="fu">testResiduals</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fit_twediee_cur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fit_twediee_cur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Deviance Table (Type II Wald chisquare tests)
 
@@ -629,12 +478,12 @@ fungicide 533.4  4 &lt; 0.00000000000000022 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Means comparison test</p>
+<p>Treatment means comparison</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>emm_cura <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fit_twediee_cur, <span class="sc">~</span> fungicide, <span class="at">type=</span><span class="st">"response"</span>) </span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>res_cura <span class="ot">&lt;-</span> <span class="fu">cld</span>(emm_cura, <span class="at">alpha=</span><span class="fl">0.05</span>, <span class="at">Letters=</span>letters,  <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>res_cura <span class="sc">%&gt;%</span> </span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">%Control</span><span class="st">`</span><span class="ot">=</span><span class="fu">abs</span>((response<span class="sc">/</span><span class="fu">filter</span>(.,fungicide<span class="sc">==</span><span class="st">"Control"</span>)<span class="sc">%&gt;%</span> <span class="fu">pull</span>(response)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>emm_cura <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fit_twediee_cur, <span class="sc">~</span> fungicide, <span class="at">type=</span><span class="st">"response"</span>) </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>res_cura <span class="ot">&lt;-</span> <span class="fu">cld</span>(emm_cura, <span class="at">alpha=</span><span class="fl">0.05</span>, <span class="at">Letters=</span>letters,  <span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>res_cura <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">`</span><span class="at">%Control</span><span class="st">`</span><span class="ot">=</span><span class="fu">abs</span>((response<span class="sc">/</span><span class="fu">filter</span>(.,fungicide<span class="sc">==</span><span class="st">"Control"</span>)<span class="sc">%&gt;%</span> <span class="fu">pull</span>(response)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  fungicide  response        SE  df asymp.LCL asymp.UCL .group %Control
 2    Bellis  4.803382 0.4445747 Inf  4.006495  5.758770    a   82.81883
@@ -643,18 +492,17 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 4   Timorex 17.539752 1.3205836 Inf 15.133372 20.328773     b  37.26226
 1   Control 27.957257 1.9647959 Inf 24.359778 32.086015      c  0.00000</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>res_cura <span class="sc">%&gt;%</span> </span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>fungicide, <span class="at">y =</span>response)<span class="sc">+</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>asymp.LCL , <span class="at">ymax=</span>asymp.UCL))<span class="sc">+</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">width=</span>.<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>res_cura <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>fungicide, <span class="at">y =</span>response)<span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>asymp.LCL , <span class="at">ymax=</span>asymp.UCL))<span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">width=</span>.<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="bioassay_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<p><img src="bioassay_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -899,7 +747,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./in_field.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-field assays</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Field experiments</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

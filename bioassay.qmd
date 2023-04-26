@@ -3,10 +3,6 @@ title: "Bioassays in fruit"
 date: '`r paste("Actualizado en", Sys.Date())`'
 ---
 
-## Preventive treatments
-
-Disease severity analysis (spots per fruit) 
-
 ```{r}
 source(here::here("setup.R"))
 library(lme4)
@@ -16,33 +12,34 @@ library(DHARMa)
 theme_set(theme_bw(base_size=12))
 ```
 
-
 ```{r}
 dat <- rio::import("data/bioassay_data.csv") %>%
   mutate_at(vars(fungicide, repetition, day, replicate, fruit), as.factor) %>% 
   mutate(fungicide=fct_relevel(fungicide, "control"))
 ```
 
-
-```{r}
-dat %>% str
-```
-
-Data scheme
+Data structure
 
 ```{r}
 ftable(xtabs(~ fungicide + day + repetition + replicate, dat))
 ```
 
-### Disease severity 
+```{r}
+dat %>% str
+```
+
+## Preventive treatments
+
+Disease severity (spots per fruit)
 
 ```{r}
 dat %>% 
   ggplot() + 
   aes(x=day, y=spots_per_fruit) + 
-  geom_boxplot(width=.5) + 
   geom_jitter(width=.2, col=2, alpha=.5) + 
-  labs(x="Treatment", y="Severity (spots per fruit)") + 
+  geom_boxplot(width=.5, alpha=.1) + 
+  labs(x="Fungicide timing (days after inoculation)", 
+       y="Severity (spots per fruit)") + 
   facet_grid(repetition~fungicide)
 ```
 
@@ -69,24 +66,21 @@ fit_zinbinom_prev <- update(fit_zipoisson_prev,family=nbinom2)
 fit_zinbinom1_prev <- update(fit_zipoisson_prev,family=nbinom1)
 fit_twediee_prev <- update(fit_zipoisson_prev,family=tweedie)
 AIC(fit_zipoisson_prev,fit_zinbinom_prev,fit_zinbinom1_prev, fit_twediee_prev)
-#               df      AIC
-# fit_zipoisson 18 3895.200
-# fit_zinbinom  19 3489.228
-# fit_zinbinom1 19 3418.201
-# fit_twediee   20 3405.606
 ```
 
 Goodness of fit
 
-```{r}
-simulateResiduals(fit_twediee_prev) %>% testResiduals()
+```{r, eval=FALSE}
+DHARMa::testOverdispersion(fit_twediee_prev)
+DHARMa::testSimulatedResiduals(fit_twediee_prev)
+# simulateResiduals(fit_twediee_prev) %>% testResiduals()
 ```
 
 ```{r}
 car::Anova(fit_twediee_prev)
 ```
 
-Means comparison test
+Treatment means comparison
 
 ```{r}
 emm_prev <- emmeans(fit_twediee_prev, ~ fungicide|day, type="response") 
@@ -99,7 +93,10 @@ res_prev %>%
   aes(x=day, y =response)+
   geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
   geom_col(alpha=.2, width=.2)+
-  facet_wrap("fungicide")
+  facet_wrap("fungicide")+
+    labs(x="Fungicide timing (days before inoculation)", 
+         y="Spots per fruit (counts)")
+
 ```
 
 ## Curative treatments
@@ -110,16 +107,18 @@ cura <- rio::import("data/curative.csv") %>%
   mutate(fungicide=fct_relevel(fungicide, "Control")) 
 ```
 
-Data scheme
+Data structure
 
 ```{r}
-cura %>% str
 ftable(xtabs(~ fungicide + repetition + replicate, cura))
 ```
 
-### Disease severity (spots per fruit) 
+```{r}
+cura %>% str
+```
 
-**Box plot: severity per treatment and repetition (1 and 2)**
+Disease severity (spots per fruit)
+
 ```{r}
 cura %>% 
   ggplot() + 
@@ -155,7 +154,7 @@ AIC(fit_zipoisson_cur,fit_zinbinom_cur,fit_zinbinom1_cur, fit_twediee_cur)
 
 Goodness of fit
 
-```{r}
+```{r eval=FALSE}
 simulateResiduals(fit_twediee_cur) %>% testResiduals()
 ```
 
@@ -163,7 +162,7 @@ simulateResiduals(fit_twediee_cur) %>% testResiduals()
 car::Anova(fit_twediee_cur)
 ```
 
-Means comparison test
+Treatment means comparison
 
 ```{r}
 emm_cura <- emmeans(fit_twediee_cur, ~ fungicide, type="response") 

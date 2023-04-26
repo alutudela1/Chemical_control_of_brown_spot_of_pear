@@ -1,5 +1,5 @@
 ---
-title: "In-field assays"
+title: "Field experiments"
 date: '`r paste("Actualizado en", Sys.Date())`'
 ---
 
@@ -16,13 +16,13 @@ dat <- rio::import("data/field.csv") %>%
 str(dat)
 ```
 
-Data scheme
+Data structure
 
 ```{r}
 ftable(xtabs(~ fungicide + tree + season, dat))
 ```
 
-Model
+Model fitting
 
 ```{r}
 dat %>% 
@@ -44,7 +44,6 @@ Goodness of fit
 
 ```{r eval=FALSE}
 simulateResiduals(mod) %>% testResiduals()
-
 ```
 
 ![](Residuals%20plot%20(in%20field).eps)
@@ -53,7 +52,7 @@ simulateResiduals(mod) %>% testResiduals()
 car::Anova(mod)
 ```
 
-Means comparison test
+Treatment means comparison
 
 ```{r}
 emm <- emmeans(mod, ~ fungicide|season, type="response") 

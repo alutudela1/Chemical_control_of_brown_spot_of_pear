@@ -13,7 +13,7 @@ editor_options:
 source(here::here("setup.R")) # here package should be installed
 ```
 
-## Mycelial growth 
+## Mycelial growth
 
 ```{r}
 raw <- import("data/mycelial_growth.csv", dec=",")
@@ -52,7 +52,7 @@ load("models/invitro_mg.rds")
 summary(mod_mg)
 ```
 
-EC50 Estimates 
+EC50 Estimates
 
 ```{r}
 ec50s <- ED(mod_mg, respLev=c(50)) %>% data.frame
@@ -63,9 +63,9 @@ ec50s <- ED(mod_mg, respLev=c(50)) %>% data.frame
 # ec50s
 ```
 
-Comparing fungicides EC50 
+Comparing fungicides EC50
 
-As we compare EC50 ratios between fungicides, if the confidence interval does not contain 1, fungicides differ among them: 
+As we compare EC50 ratios between fungicides, if the confidence interval does not contain 1, fungicides differ among them:
 
 ```{r}
 ed_comp <- EDcomp(mod_mg, 
@@ -81,7 +81,6 @@ ed_comp <- EDcomp(mod_mg,
 ed_comp
 ```
 
-
 ```{r, eval=FALSE}
 ed_comp %>% 
   ggplot()+ 
@@ -93,7 +92,7 @@ ed_comp %>%
   labs(col="Relative to 1")
 ```
 
-```{r}
+```{r eval=FALSE}
 dat %>% 
   ggplot()+
   aes(x=dose+0.0001, y=colony_diameter, col=fungicide) +
@@ -112,6 +111,8 @@ dat %>%
 ggsave(last_plot(), file="plots/mg_curves.jpg", width = 8, height = 6, units = "cm", scale=1.5, dpi = 300)
 ```
 
+![Mycelial growth in function of increasing concentration of fungicides](plots/mg_curves.jpg)
+
 ## Spore germination
 
 ```{r}
@@ -123,7 +124,7 @@ germi_dat <- germi_raw %>%
   mutate(dose_ = dose+0.0001)
 ```
 
-Data structure 
+Data structure
 
 ```{r}
 ftable(xtabs(complete.cases(germination_percent)~fungicide+dose+strain , data=germi_dat))
@@ -157,7 +158,6 @@ ec50s_g <- ED(mod_germ, respLev=c(50)) %>% as.data.frame()
 ec50s_g
 ```
 
-
 ```{r}
 germ_comp <- EDcomp(mod_germ, 
        percVec=c(50), 
@@ -170,7 +170,6 @@ germ_comp <- EDcomp(mod_germ,
 germ_comp
 ```
 
-
 ```{r}
 coef_mod_germ <- summary(mod_germ) %>% data.frame %>% 
     rownames_to_column("param")  %>% 
@@ -179,7 +178,6 @@ coef_mod_germ <- summary(mod_germ) %>% data.frame %>%
 # ec50_germ <- coef_mod_germ %>% filter(param=="e") 
 # ec50_germ
 ```
-
 
 ```{r, eval=FALSE}
 germ_comp %>% 
@@ -191,7 +189,7 @@ germ_comp %>%
   labs(col="Relative to 1")
 ```
 
-```{r}
+```{r, eval=FALSE}
 germi_dat %>% 
   ggplot()+
   aes(x=dose+0.0001, y=germination_percent, col=fungicide) +
@@ -209,3 +207,5 @@ germi_dat %>%
 ```{r eval=FALSE}
 ggsave(last_plot(), file="plots/germi_curves.jpg", width = 8, height = 6, units = "cm", scale=1.5, dpi = 300)
 ```
+
+![Inhibition of conidial germination](plots/germi_curves.jpg)

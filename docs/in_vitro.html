@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-04-21">
+<meta name="dcterms.date" content="2023-04-26">
 
 <title>Efficacy of fungicides against brown spot of pear in Argentina - 1&nbsp; In vitro experiments</title>
 <style>
@@ -136,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Abstract</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -154,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./in_field.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">In-field assays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Field experiments</span></span></a>
   </div>
 </li>
     </ul>
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 21, 2023</p>
+      <p class="date">April 26, 2023</p>
     </div>
   </div>
   
@@ -399,12 +399,15 @@ Timorex/Ziram:50/50  17.47908235 10.38447082 25.87541262</code></pre>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Dose (ppm)"</span>,  <span class="at">y =</span> <span class="st">"Colony diameter (cm)"</span>, <span class="at">col=</span> <span class="st">"Fungicide"</span>) <span class="sc">+</span> </span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="in_vitro_files/figure-html/unnamed-chunk-9-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
-</div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">last_plot</span>(), <span class="at">file=</span><span class="st">"plots/mg_curves.jpg"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">scale=</span><span class="fl">1.5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/mg_curves.jpg" class="quarto-discovered-preview-image img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Mycelial growth in function of increasing concentration of fungicides</figcaption><p></p>
+</figure>
 </div>
 </section>
 <section id="spore-germination" class="level2" data-number="1.2">
@@ -651,12 +654,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">fct =</span> <span class="fu">L.3</span>()), <span class="at">se =</span> F) <span class="sc">+</span></span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"Dose (ppm)"</span>,  <span class="at">y =</span> <span class="st">"Germination (%)"</span>, <span class="at">col=</span> <span class="st">"Fungicide"</span>)  <span class="sc">+</span></span>
 <span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_family=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="in_vitro_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
-</div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">last_plot</span>(), <span class="at">file=</span><span class="st">"plots/germi_curves.jpg"</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">scale=</span><span class="fl">1.5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/germi_curves.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Inhibition of conidial germination</figcaption><p></p>
+</figure>
 </div>
 
 
@@ -899,7 +905,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abstract</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
