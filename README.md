@@ -53,5 +53,5 @@ spot caused by *Stemphylium vesicarium*
   repository can be downloaded by:*
 
 ``` r
-usethis::use_course("https://github.com/juanchiem/Chemical_control_of_brown_spot_of_pear/archive/refs/heads/main.zip")
+usethis::use_course("https://github.com/alutudela1/Chemical_control_of_brown_spot_of_pear/archive/refs/heads/main.zip")
 ```
