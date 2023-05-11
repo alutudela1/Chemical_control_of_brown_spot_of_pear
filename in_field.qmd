@@ -3,56 +3,70 @@ title: "Field experiments"
 date: '`r paste("Actualizado en", Sys.Date())`'
 ---
 
-```{r}
-source(here::here("setup.R"))
-library(lme4)
+```{r, warning=FALSE, message=FALSE}
+pacman::p_load(
+  tidyverse, 
+  rio, 
+  janitor, 
+  lme4, 
+  DHARMa, 
+  emmeans, 
+  multcomp
+)
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("select", "dplyr")
 theme_set(theme_bw(base_size=12))
 ```
 
 ```{r}
-dat <- rio::import("data/field.csv") %>% 
+dat <- import("data/field.csv") %>% 
   mutate_at(vars(fungicide, season, tree), as.factor) %>% 
   mutate(fungicide=fct_relevel(fungicide, "Control"))
 str(dat)
 ```
 
-Data structure
+## Data structure
+
+- 2 Experiments conducted in 2020 and 2021
+- 3 Fungicide protection treatments: 2 fungicides + non treated control
+- 10 trees per treatment
 
 ```{r}
-ftable(xtabs(~ fungicide + tree + season, dat))
+ftable(xtabs(~ season + fungicide + tree, dat))
 ```
 
-Model fitting
 
 ```{r}
 dat %>% 
   ggplot() + 
   aes(x=fungicide, y=diseased/leaves) + 
   # geom_boxplot(width=.5) + 
-  geom_text(aes(label=tree))+
+  # geom_text(aes(label=tree))+
   geom_jitter(width=.2, col=2, alpha=.5) + 
   labs(x="Treatment", y="Disease incidence") + 
   facet_wrap("season")
 ```
 
+## Model fitting
+
+We fitted a generalized linear model including fungicide treatment and season (repetition) and their interaction as fixed effects. 
+
 ```{r}
-mod <- glmer(diseased/leaves ~ fungicide * season + (1|tree),
+mod <- glm(diseased/leaves ~ fungicide * season,
              weights=leaves, family=binomial, dat)
 ```
 
 Goodness of fit
 
-```{r eval=FALSE}
-simulateResiduals(mod) %>% testResiduals()
+```{r fig.show='hide'}
+testDispersion(mod)
 ```
-
-![](Residuals%20plot%20(in%20field).eps)
 
 ```{r}
 car::Anova(mod)
 ```
 
-Treatment means comparison
+## Treatment means comparison per season (individual experiments)
 
 ```{r}
 emm <- emmeans(mod, ~ fungicide|season, type="response") 
@@ -66,5 +80,6 @@ res %>%
   aes(x=fungicide, y =prob)+
   geom_pointrange(aes(ymin=asymp.LCL , ymax=asymp.UCL))+
   facet_wrap("Season", labeller = label_both) + geom_text(aes(label=str_squish(.group)), angle=90, vjust=-1, hjust=.5, ) + 
-  geom_jitter(data=dat%>%rename(Season="season") , aes(y=diseased/leaves), alpha=.2, width=.1)
+  geom_jitter(data=dat%>%rename(Season="season") , aes(y=diseased/leaves), alpha=.2, width=.1) + 
+  labs(y= "Brown spot incidence (proportion)", x="")
 ```

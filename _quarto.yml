@@ -9,6 +9,20 @@ book:
     - in_vitro.qmd
     - bioassay.qmd
     - in_field.qmd
+  search: false
+  sidebar:
+    pinned: true
+    tools:
+          - icon: save
+            menu:
+              - text: In vitro - mycelial growth
+                url:  "data/mycelial_growth.csv"
+              - text: In vitro - conidia germination
+                url:  "data/germination.csv"
+              - text: Bioassays
+                url:  "data/bioassay_data.csv"
+              - text: In field
+                url:  "data/field.csv"
 
 format:
   html:
